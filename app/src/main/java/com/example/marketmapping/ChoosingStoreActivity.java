@@ -13,7 +13,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class ChoosingStoreActivity extends AppCompatActivity {
     private Button button;
 
-
+//added button to go desired page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
