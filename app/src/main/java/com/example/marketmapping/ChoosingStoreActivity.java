@@ -13,12 +13,14 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class ChoosingStoreActivity extends AppCompatActivity {
     private Button button;
 
-//added button to go desired page
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing_store);
+
+        //added button to go desired page
 
         button = (Button) findViewById(R.id.ChooseStore1Button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -28,8 +30,29 @@ public class ChoosingStoreActivity extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        button = (Button) findViewById(R.id.ChooseStore2Button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHomePage();
+            }
+        });
+
+        button = (Button) findViewById(R.id.ChooseStore3Button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHomePage();
+            }
+        });
+
+        button = (Button) findViewById(R.id.ChooseStore4Button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHomePage();
+            }
+        });
 
     }
 
