@@ -20,7 +20,7 @@ public class ChoosingStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing_store);
 
-        //added button to go desired page
+        //This code down here \|/ is syntax for buttons to go to next page
 
         button = (Button) findViewById(R.id.ChooseStore1Button);
         button.setOnClickListener(new View.OnClickListener() {
