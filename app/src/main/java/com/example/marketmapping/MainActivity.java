@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,34 +17,38 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
-
-
+    EditText emailbox;
+    EditText passwordbox;
+    Button SubmitButtonActivityMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.SubmitButtonActivityMain); //define new button to the submitbutton button
+
+        emailbox = findViewById(R.id.emailbox);
+        passwordbox = findViewById(R.id.passwordbox);
+        SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        SubmitButtonActivityMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //CODE FOR GET REQUEST, DOWN BELOW GETS EMAIL FROM FIRST INDEX IN THE USERS PAGE, WHICH IS JANE.DOE@EMAIL.COM
-
                 // Instantiate the RequestQueue.
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String url ="http://10.0.2.2:3000/users/";
+                String url = "http://10.0.2.2:3000/users/";
 
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
@@ -68,25 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 queue.add(request);
-//                // Request a string response from the provided URL.
-//                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                        new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String response) {
-//                                Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
-//                            }
-//                        }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-                // Add the request to the RequestQueue.
-
-
+//
             }
         });
     }
 }
-
