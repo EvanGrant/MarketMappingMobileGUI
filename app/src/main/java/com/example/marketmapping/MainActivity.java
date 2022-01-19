@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        emailbox = findViewById(R.id.emailbox);
-        passwordbox = findViewById(R.id.passwordbox);
+        //Defined the IDs in the xml file
+        emailbox = findViewById(R.id.emailBoxActivityMain);
+        passwordbox = findViewById(R.id.passwordBoxActivityMain);
         SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
 
 
@@ -54,16 +54,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
 
-                        String email = "";
+                        String email = ""; //define local variables to use for try catch down below
+                        String pWord = "";
 
                         try {
                             JSONObject LogIn = response.getJSONObject(0);
-                            email = LogIn.getString("email");
+                            email = LogIn.getString("email"); //Set email and pWord to the Volley info I get
+                            pWord = LogIn.getString("pWord");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(MainActivity.this, "Email = " + email, Toast.LENGTH_SHORT).show();
+                        
+
+
+                        Toast.makeText(MainActivity.this, "Email = " + email + " Password: " + pWord, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override

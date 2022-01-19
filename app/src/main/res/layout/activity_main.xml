@@ -10,7 +10,7 @@
    android:background="@drawable/mountainsteal">
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/emailbox"
+        android:id="@+id/emailBoxActivityMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -22,7 +22,7 @@
         app:counterMaxLength="30"
         app:helperText="Required*"
         app:helperTextTextColor="@color/design_default_color_error"
-        app:layout_constraintBottom_toTopOf="@+id/passwordbox"
+        app:layout_constraintBottom_toTopOf="@+id/passwordBoxActivityMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
     </androidx.appcompat.widget.AppCompatEditText>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/passwordbox"
+        android:id="@+id/passwordBoxActivityMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
