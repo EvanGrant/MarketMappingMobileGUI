@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
 
 
+
+
         SubmitButtonActivityMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,11 +66,18 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                      //  Toast.makeText(MainActivity.this, "Email = " + email + " Password: " + pWord, Toast.LENGTH_SHORT).show();
 
-                        
+                        //WE"RE FOCUSING ON THIS RIGHT NOW
+                        if (emailbox.equals(email) && passwordbox.equals(pWord))
+                        {
+                            Toast.makeText(MainActivity.this, "They're Equal!", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "They're Not Equal. Something is Wrong", Toast.LENGTH_SHORT).show();
+                        }
 
-
-                        Toast.makeText(MainActivity.this, "Email = " + email + " Password: " + pWord, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -78,7 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 queue.add(request);
-//
+
+
+
+
+
+
             }
         });
     }
