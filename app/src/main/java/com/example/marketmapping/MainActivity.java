@@ -27,19 +27,15 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText emailbox;
-    EditText passwordbox;
-    Button SubmitButtonActivityMain;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Defined the IDs in the xml file
-        emailbox = findViewById(R.id.emailBoxActivityMain);
-        passwordbox = findViewById(R.id.passwordBoxActivityMain);
-        SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
+        EditText emailbox = findViewById(R.id.emailBoxActivityMain);
+        EditText passwordbox = findViewById(R.id.passwordBoxActivityMain);
+        Button SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
 
 
 
@@ -66,10 +62,9 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                      //  Toast.makeText(MainActivity.this, "Email = " + email + " Password: " + pWord, Toast.LENGTH_SHORT).show();
 
-                        //WE"RE FOCUSING ON THIS RIGHT NOW
-                        if (emailbox.equals(email) && passwordbox.equals(pWord))
+                        //This converts emailbox from xml to string to make sure we can compare string to string, and not edittext to string
+                        if (emailbox.getText().toString().equals(email) && passwordbox.getText().toString().equals(pWord))
                         {
                             Toast.makeText(MainActivity.this, "They're Equal!", Toast.LENGTH_SHORT).show();
                         }
