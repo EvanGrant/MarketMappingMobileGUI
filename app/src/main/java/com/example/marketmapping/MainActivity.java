@@ -64,20 +64,24 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         //This converts emailbox from xml to string to make sure we can compare string to string, and not edittext to string
+                        //Then if both email and password inserted from user is equal to database, signs in
                         if (emailbox.getText().toString().equals(email) && passwordbox.getText().toString().equals(pWord))
                         {
-                            Toast.makeText(MainActivity.this, "They're Equal!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Signed In", Toast.LENGTH_SHORT).show();
+
+                            openHomePage();
+
                         }
                         else
                         {
-                            Toast.makeText(MainActivity.this, "They're Not Equal. Something is Wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Email or Password is incorrect", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Could Not Sign In, Server is down", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -91,4 +95,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void openHomePage()
+    {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
 }
