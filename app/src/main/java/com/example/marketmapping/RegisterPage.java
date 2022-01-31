@@ -64,11 +64,10 @@ public class RegisterPage extends AppCompatActivity {
                 }){
                     protected Map<String, String> getParams(){
                         Map<String, String> paramV = new HashMap<>();
-                        paramV.put("id", "4");
                         paramV.put("email", "test.test@snhu.edu");
                         paramV.put("fName", "Testy");
                         paramV.put("lName", "Test");
-                        paramV.put("pWord", "TestPass");
+                        paramV.put("PWord", "TestPass");
                         return paramV;
                         //For some reason, the database is getting pWord as null. Fix that and it should work
                         //Found out error but cant fix, when posting, pWord becomes PWord and then makes it null
