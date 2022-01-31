@@ -98,5 +98,14 @@
         app:layout_constraintVertical_bias="0.258"
         app:srcCompat="@drawable/shoppingcart" />
 
+    <Button
+        android:id="@+id/registerButtonActivityMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBoxActivityMain" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

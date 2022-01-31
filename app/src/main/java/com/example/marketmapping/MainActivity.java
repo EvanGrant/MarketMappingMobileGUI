@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         EditText emailbox = findViewById(R.id.emailBoxActivityMain);
         EditText passwordbox = findViewById(R.id.passwordBoxActivityMain);
         Button SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
-
+        Button registerButtonActivityMain = findViewById(R.id.registerButtonActivityMain);
 
 
 
@@ -90,7 +90,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+            }
+        });
 
+        registerButtonActivityMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+
+                openRegisterPage();
 
             }
         });
@@ -102,4 +109,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openRegisterPage()
+    {
+        Intent intent = new Intent(this, RegisterPage.class);
+        startActivity(intent);
+    }
+
 }
+
+
