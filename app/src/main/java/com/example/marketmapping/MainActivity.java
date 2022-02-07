@@ -10,9 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -39,49 +45,41 @@ public class MainActivity extends AppCompatActivity {
         Button registerButtonActivityMain = findViewById(R.id.registerButtonActivityMain);
 
 
-
         SubmitButtonActivityMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String email = emailbox.getText().toString(); //local variables for concatenation to url
+                String password = passwordbox.getText().toString(); //Have to define and assign these in the SubmitButtonActivity, doing that above resulted in parsing errors
+
                 // Instantiate the RequestQueue.
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String url = "http://10.0.2.2:3000/users/";
+                String url = "http://10.0.2.2:3000/users/" + email + "/" + password + "/"; //concatenation from the edittexts on the page, to check for the specific user input
 
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                StringRequest request = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
+                        //Find line of code to see response from RestAPI
+                        //With that, find out what it is, then see where you're going wrong
+                        Toast.makeText(MainActivity.this, "Welcome User", Toast.LENGTH_SHORT).show();
 
-                        String email = ""; //define local variables to use for try catch down below
-                        String pWord = "";
-
-                        try {
-                            JSONObject LogIn = response.getJSONObject(0);
-                            email = LogIn.getString("email"); //Set email and pWord to the Volley info I get
-                            pWord = LogIn.getString("pWord");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        //This converts emailbox from xml to string to make sure we can compare string to string, and not edittext to string
-                        //Then if both email and password inserted from user is equal to database, signs in
-                        if (emailbox.getText().toString().equals(email) && passwordbox.getText().toString().equals(pWord))
-                        {
-                            Toast.makeText(MainActivity.this, "Signed In", Toast.LENGTH_SHORT).show();
-
-                            openHomePage();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "Email or Password is incorrect", Toast.LENGTH_SHORT).show();
-                        }
-
+                        openHomePage();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Could Not Sign In, Server is down", Toast.LENGTH_SHORT).show();
+                        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                            Toast.makeText(MainActivity.this, "Volley Error " + error.getMessage(), Toast.LENGTH_SHORT).show(); //hopefully this prints out error message
+                        } else if (error instanceof AuthFailureError) {
+                            Toast.makeText(MainActivity.this, "Authentication Error " + error.getMessage(), Toast.LENGTH_SHORT).show(); //hopefully this prints out error message
+                        } else if (error instanceof ServerError) {
+                            Toast.makeText(MainActivity.this, "Server Error " + error.getMessage(), Toast.LENGTH_SHORT).show(); //hopefully this prints out error message
+                        } else if (error instanceof NetworkError) {
+                            Toast.makeText(MainActivity.this, "Network Error " + error.getMessage(), Toast.LENGTH_SHORT).show(); //hopefully this prints out error message
+                        } else if (error instanceof ParseError) {
+                            Toast.makeText(MainActivity.this, "Parse Error " + error.getMessage(), Toast.LENGTH_SHORT).show(); //hopefully this prints out error message
+                        }
                     }
                 });
 
