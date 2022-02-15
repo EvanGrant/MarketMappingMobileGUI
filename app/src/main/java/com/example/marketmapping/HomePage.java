@@ -27,12 +27,10 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
 
-        RequestQueue requestQueue=Volley.newRequestQueue(this);
 
 
 
-
-        button = (Button) findViewById(R.id.CheckListsButton);
+        button = (Button) findViewById(R.id.startShoppingButtonHomePage);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
