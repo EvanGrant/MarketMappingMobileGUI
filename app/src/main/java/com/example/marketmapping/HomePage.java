@@ -33,22 +33,16 @@ public class HomePage extends AppCompatActivity {
         button = (Button) findViewById(R.id.startShoppingButtonHomePage);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { openActivityChoosingStorePage(); }
 
 
-
-
-            }
         });
     }
 
-    public void openGroceryListsPage()
+    public void openActivityChoosingStorePage()
     {
-        Intent intent = new Intent(this, GroceryListsPage.class);
+        Intent intent = new Intent(this, ChoosingStoreActivity.class);
         startActivity(intent);
     }
-
-
-
 
 }
