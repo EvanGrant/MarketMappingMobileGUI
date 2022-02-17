@@ -59,7 +59,7 @@ public class RegisterPage extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RegisterPage.this, "Didnt work for some reason", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterPage.this, "user is already registered, please sign in", Toast.LENGTH_SHORT).show();
                     }
                 }){
                     protected Map<String, String> getParams(){
