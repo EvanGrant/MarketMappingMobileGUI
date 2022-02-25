@@ -16,7 +16,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 public class ChoosingStoreActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
