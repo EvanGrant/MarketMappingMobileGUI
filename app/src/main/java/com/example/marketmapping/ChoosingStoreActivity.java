@@ -15,8 +15,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class ChoosingStoreActivity extends AppCompatActivity {
-    private Button button;
-    private RequestQueue mQueue;
 
 
     @Override
