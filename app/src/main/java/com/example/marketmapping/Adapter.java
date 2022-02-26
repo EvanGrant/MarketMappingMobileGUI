@@ -14,6 +14,15 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private Context mContext;
     private ArrayList<ExampleStoreName> mExampleList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public Adapter(Context context, ArrayList<ExampleStoreName> exampleList) {
         mContext = context;
@@ -46,8 +55,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
        public ViewHolder(@NonNull View itemView) {
            super(itemView);
-
            mTextViewStoreName = itemView.findViewById(R.id.text_view_storename);
+
+           itemView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   if (mListener != null) {
+                       int position = getBindingAdapterPosition();
+                       if (position != RecyclerView.NO_POSITION ) {
+                           mListener.onItemClick(position);
+                       }
+                   }
+               }
+           });
 
        }
    }

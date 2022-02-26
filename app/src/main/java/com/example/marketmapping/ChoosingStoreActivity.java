@@ -26,7 +26,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ChoosingStoreActivity extends AppCompatActivity {
+public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.OnItemClickListener {
+    public static final String EXTRA_STORE_NAME = "storeName";
+
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
     private ArrayList<ExampleStoreName> mExampleList;
@@ -65,6 +67,7 @@ public class ChoosingStoreActivity extends AppCompatActivity {
 
                             mAdapter = new Adapter(ChoosingStoreActivity.this, mExampleList);
                             mRecyclerView.setAdapter(mAdapter);
+                            mAdapter.setOnItemClickListener(ChoosingStoreActivity.this);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -79,5 +82,15 @@ public class ChoosingStoreActivity extends AppCompatActivity {
 
         mRequestQueue.add(jsonArrayRequest);
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
+        ExampleStoreName clickedItem = mExampleList.get(position);
+
+        CategoryItemIntent.putExtra(EXTRA_STORE_NAME, clickedItem.getStoreName());
+
+        startActivity(CategoryItemIntent);
     }
 }
