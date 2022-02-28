@@ -32,14 +32,10 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choosing_category_of_item); //THIS ISNT WORKING BECAUSE I NEED
-                                                                    // ANOTHER LAYOUT DETAIL SIMILAR TO CHOOSING STORE ACTIVITY
+        setContentView(R.layout.activity_choosing_category_of_item);
+
         Intent intent = getIntent();
-        String storeName = intent.getStringExtra(EXTRA_STORE_NAME);
-
-        //TextView textViewStore = findViewById(R.id.text_view_storename);
-
-        //textViewStore.setText(storeName);
+        String storeName = intent.getStringExtra(EXTRA_STORE_NAME); //I think this value is the store position. Give it a whirl and see if it works.
 
         mRecyclerView = findViewById(R.id.category_recycler_view);
         mRecyclerView.setHasFixedSize(true);
