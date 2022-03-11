@@ -1,14 +1,12 @@
 package com.example.marketmapping;
 
-import static com.example.marketmapping.ChoosingStoreActivity.EXTRA_STORE_NAME;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,34 +21,32 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements CategoryAdapter.OnItemClickListener {
-    public static final String EXTRA_CATEGORY = "categoryName";
-
+public class AddItemtoAddtoListPage extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private CategoryAdapter mCategoryAdapter;
-    private ArrayList<ExampleCategory> mExampleList;
+    private AddToListAdapter mAddToListAdapter;
+    private ArrayList<add_to_list_item> mItemList;
     private RequestQueue mRequestQueue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choosing_category_of_item);
+        setContentView(R.layout.activity_add_itemto_addto_list_page);
 
         Intent intent = getIntent();
-        String storeName = intent.getStringExtra(EXTRA_STORE_NAME); //I think this value is the store position. Give it a whirl and see if it works.
 
-        mRecyclerView = findViewById(R.id.category_recycler_view);
+        mRecyclerView = findViewById(R.id.adding_item_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mExampleList = new ArrayList<>();
+        mItemList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
     }
 
-    private void parseJSON() {
-        String url = "http://10.0.2.2:3000/categories/1";
+    private void parseJSON(){
+        String url = "http://10.0.2.2:3000/items/1/meat";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -58,16 +54,17 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
                     public void onResponse(JSONArray response) {
                         try {
                             for (int i = 0; i < response.length(); i++) {
-                                JSONObject storeObject = response.getJSONObject(i);
+                                JSONObject foodObject = response.getJSONObject(i);
 
-                                String categoryName = storeObject.getString("category");
+                                String foodName = foodObject.getString("name");
+                                int aisleNumber = foodObject.getInt("aisle_id");
+                                int shelfNumber = foodObject.getInt("shelf_id");
 
-                                mExampleList.add(new ExampleCategory(categoryName));
+                                mItemList.add(new add_to_list_item(foodName, aisleNumber, shelfNumber));
                             }
 
-                            mCategoryAdapter = new CategoryAdapter(ChoosingCategoryOfItemActivity.this, mExampleList);
-                            mRecyclerView.setAdapter(mCategoryAdapter);
-                            mCategoryAdapter.setOnItemClickListener(ChoosingCategoryOfItemActivity.this);
+                            mAddToListAdapter = new AddToListAdapter(AddItemtoAddtoListPage.this, mItemList);
+                            mRecyclerView.setAdapter(mAddToListAdapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -81,17 +78,6 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
         });
 
         mRequestQueue.add(jsonArrayRequest);
-
-    }
-
-    @Override
-    public void onItemClick(int position) {
-        Intent categoryIntent = new Intent(this, AddItemtoAddtoListPage.class);
-        ExampleCategory clickedCategory = mExampleList.get(position);
-
-        categoryIntent.putExtra(EXTRA_CATEGORY, clickedCategory.getCategoryName());
-
-        startActivity(categoryIntent);
 
     }
 }
