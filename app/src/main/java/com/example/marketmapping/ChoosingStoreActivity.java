@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.OnItemClickListener {
     public static final String EXTRA_STORE_NAME = "storeName";
+    public static int storeID = 0;
 
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
@@ -62,6 +63,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
                                 String storeName = storeObject.getString("name");
 
+
                                 mExampleList.add(new ExampleStoreName(storeName));
                             }
 
@@ -86,10 +88,15 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
     @Override
     public void onItemClick(int position) {
+
+        //might have to do a json request in the item click to get id from adapter position
+
+
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
         ExampleStoreName clickedItem = mExampleList.get(position);
 
         CategoryItemIntent.putExtra(EXTRA_STORE_NAME, clickedItem.getStoreName());
+        CategoryItemIntent.putExtra("storeID", storeID);
 
         startActivity(CategoryItemIntent);
     }

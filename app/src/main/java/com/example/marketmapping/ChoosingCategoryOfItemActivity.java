@@ -1,6 +1,7 @@
 package com.example.marketmapping;
 
 import static com.example.marketmapping.ChoosingStoreActivity.EXTRA_STORE_NAME;
+import static com.example.marketmapping.ChoosingStoreActivity.storeID;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 
 public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements CategoryAdapter.OnItemClickListener {
     public static final String EXTRA_CATEGORY = "categoryName";
+    public int passedStoreID = 0;
 
     private RecyclerView mRecyclerView;
     private CategoryAdapter mCategoryAdapter;
@@ -38,6 +40,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
 
         Intent intent = getIntent();
         String storeName = intent.getStringExtra(EXTRA_STORE_NAME); //I think this value is the store position. Give it a whirl and see if it works.
+        //passedStoreID = intent.getIntExtra("storeID", 0);
 
         mRecyclerView = findViewById(R.id.category_recycler_view);
         mRecyclerView.setHasFixedSize(true);
