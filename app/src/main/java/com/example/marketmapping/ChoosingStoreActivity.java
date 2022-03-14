@@ -92,11 +92,12 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
         //might have to do a json request in the item click to get id from adapter position
 
 
+
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
         ExampleStoreName clickedItem = mExampleList.get(position);
 
         CategoryItemIntent.putExtra(EXTRA_STORE_NAME, clickedItem.getStoreName());
-        CategoryItemIntent.putExtra("storeID", storeID);
+        CategoryItemIntent.putExtra("storeposition", position);
 
         startActivity(CategoryItemIntent);
     }
