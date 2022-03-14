@@ -93,6 +93,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
 
 
+
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
         ExampleStoreName clickedItem = mExampleList.get(position);
 

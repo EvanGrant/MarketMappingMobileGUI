@@ -41,6 +41,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
         Intent intent = getIntent();
         String storeName = intent.getStringExtra(EXTRA_STORE_NAME); //I think this value is the store position. Give it a whirl and see if it works.
         passedStoreID = intent.getIntExtra("storeposition", 0);
+        passedStoreID += 1; //This is to give it correct position, temporary
 
         mRecyclerView = findViewById(R.id.category_recycler_view);
         mRecyclerView.setHasFixedSize(true);
