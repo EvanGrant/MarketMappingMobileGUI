@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +35,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
     private Adapter mAdapter;
     private ArrayList<ExampleStoreName> mExampleList;
     private RequestQueue mRequestQueue;
+    private ArrayList<JSONObject> mStoreObjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mExampleList = new ArrayList<>();
+        mStoreObjects = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
@@ -62,9 +65,11 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
                                 JSONObject storeObject = response.getJSONObject(i);
 
                                 String storeName = storeObject.getString("name");
+                                String storeID = storeObject.getString("id");
 
 
                                 mExampleList.add(new ExampleStoreName(storeName));
+                                mStoreObjects.add(storeObject);
                             }
 
                             mAdapter = new Adapter(ChoosingStoreActivity.this, mExampleList);
@@ -87,12 +92,16 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
     }
 
     @Override
-    public void onItemClick(int position) {
-
-        //might have to do a json request in the item click to get id from adapter position
+    public void onItemClick(View view, int position) {
 
 
+        TextView textView = view.findViewById(R.id.text_view_storename);
 
+        //Get text from textview, that is the storename
+        //using storename, get the position of the storename in mExampleList
+        //iterate thru store list until I find storename that equals storename
+        //using that position, get item out jsonobjectarray at that position
+        // ex. if position 6 is shaws, then position 6 in the jsonobjectarray is the jsonobject for the store
 
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
         ExampleStoreName clickedItem = mExampleList.get(position);

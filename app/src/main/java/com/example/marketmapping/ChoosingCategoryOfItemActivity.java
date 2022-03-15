@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -89,7 +90,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(View view, int position) {
         Intent categoryIntent = new Intent(this, AddItemtoAddtoListPage.class);
         ExampleCategory clickedCategory = mExampleList.get(position);
 

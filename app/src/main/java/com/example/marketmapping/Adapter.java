@@ -17,7 +17,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(View view, int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -63,7 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                    if (mListener != null) {
                        int position = getAdapterPosition();
                        if (position != RecyclerView.NO_POSITION ) {
-                           mListener.onItemClick(position);
+                           mListener.onItemClick(v, position);
                        }
                    }
                }
