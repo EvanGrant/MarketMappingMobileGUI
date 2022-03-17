@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -65,7 +66,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
                                 JSONObject storeObject = response.getJSONObject(i);
 
                                 String storeName = storeObject.getString("name");
-                                String storeID = storeObject.getString("id");
+
 
 
                                 mExampleList.add(new ExampleStoreName(storeName));
@@ -106,13 +107,20 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
         ExampleStoreName chosenStore = (mExampleList.get(position)); //this gets the value of the chosenstore at position and applies it to the ExampleStoreName datatype
         String storeNameString = chosenStore.getStoreName(); //then chosenStore gets converted to a string that I can use
 
-    /*     for (int i = 0; i < mExampleList.size(); i++) {
-           if (mExampleList.get(i).equals(storeNameString)) {
-                mStoreObjects.get(i);
+        String storeID = "";
+
+        try {
+            for (int i = 0; i < mExampleList.size(); i++) {
+                if (mExampleList.get(i).getStoreName().equals(storeNameString)) {
+                    storeID = mStoreObjects.get(i).getString("id");
+                }
             }
         }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-    */
+
 
 
 
@@ -122,7 +130,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
         ExampleStoreName clickedItem = mExampleList.get(position);
 
         CategoryItemIntent.putExtra(EXTRA_STORE_NAME, clickedItem.getStoreName());
-        CategoryItemIntent.putExtra("storeposition", position);
+        CategoryItemIntent.putExtra("storeid", storeID);
 
         startActivity(CategoryItemIntent);
     }
