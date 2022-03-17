@@ -33,9 +33,9 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
-    private ArrayList<ExampleStoreName> mExampleList;
+    public ArrayList<ExampleStoreName> mExampleList;
     private RequestQueue mRequestQueue;
-    private ArrayList<JSONObject> mStoreObjects;
+    public ArrayList<JSONObject> mStoreObjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +102,21 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
         //iterate thru store list until I find storename that equals storename
         //using that position, get item out jsonobjectarray at that position
         // ex. if position 6 is shaws, then position 6 in the jsonobjectarray is the jsonobject for the store
+
+        ExampleStoreName chosenStore = (mExampleList.get(position)); //this gets the value of the chosenstore at position and applies it to the ExampleStoreName datatype
+        String storeNameString = chosenStore.getStoreName(); //then chosenStore gets converted to a string that I can use
+
+    /*     for (int i = 0; i < mExampleList.size(); i++) {
+           if (mExampleList.get(i).equals(storeNameString)) {
+                mStoreObjects.get(i);
+            }
+        }
+
+    */
+
+
+
+
 
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
         ExampleStoreName clickedItem = mExampleList.get(position);
