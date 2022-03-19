@@ -29,8 +29,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.OnItemClickListener {
-    public static final String EXTRA_STORE_NAME = "storeName";
-    public static int storeID = 0;
 
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
@@ -107,12 +105,12 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
         ExampleStoreName chosenStore = (mExampleList.get(position)); //this gets the value of the chosenstore at position and applies it to the ExampleStoreName datatype
         String storeNameString = chosenStore.getStoreName(); //then chosenStore gets converted to a string that I can use
 
-        String storeID = "";
+        String store = "";
 
         try {
             for (int i = 0; i < mExampleList.size(); i++) {
                 if (mExampleList.get(i).getStoreName().equals(storeNameString)) {
-                    storeID = mStoreObjects.get(i).getString("id");
+                    store = mStoreObjects.get(i).getString("id");
                 }
             }
         }
@@ -120,16 +118,11 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
             e.printStackTrace();
         }
 
-
-
-
-
-
+        int storeID = Integer.parseInt(store);
 
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
         ExampleStoreName clickedItem = mExampleList.get(position);
 
-        CategoryItemIntent.putExtra(EXTRA_STORE_NAME, clickedItem.getStoreName());
         CategoryItemIntent.putExtra("storeid", storeID);
 
         startActivity(CategoryItemIntent);

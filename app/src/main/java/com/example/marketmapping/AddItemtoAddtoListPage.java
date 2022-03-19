@@ -27,6 +27,8 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
     private ArrayList<add_to_list_item> mItemList;
     private RequestQueue mRequestQueue;
 
+    public String passedCategory = "";
+    public int passedStoreId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
         setContentView(R.layout.activity_add_itemto_addto_list_page);
 
         Intent intent = getIntent();
+        passedCategory = intent.getStringExtra("storeCategory");
+        passedStoreId = intent.getIntExtra("storeid",0);
 
         mRecyclerView = findViewById(R.id.adding_item_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -46,7 +50,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
     }
 
     private void parseJSON(){
-        String url = "http://10.0.2.2:3000/items/1/meat";
+        String url = "http://10.0.2.2:3000/items/" + passedStoreId + "/" + passedCategory;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {

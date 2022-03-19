@@ -1,7 +1,5 @@
 package com.example.marketmapping;
 
-import static com.example.marketmapping.ChoosingStoreActivity.EXTRA_STORE_NAME;
-import static com.example.marketmapping.ChoosingStoreActivity.storeID;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,12 +24,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements CategoryAdapter.OnItemClickListener {
-    public static final String EXTRA_CATEGORY = "categoryName";
-    public int passedStoreID = 0;
+    public int passedStoreID;
 
     private RecyclerView mRecyclerView;
     private CategoryAdapter mCategoryAdapter;
     private ArrayList<ExampleCategory> mExampleList;
+    public ArrayList<JSONObject> mStoreObjects;
     private RequestQueue mRequestQueue;
 
     @Override
@@ -40,7 +38,6 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_choosing_category_of_item);
 
         Intent intent = getIntent();
-        String storeName = intent.getStringExtra(EXTRA_STORE_NAME); //I think this value is the store position. Give it a whirl and see if it works.
         passedStoreID = intent.getIntExtra("storeid", 0);
 
         mRecyclerView = findViewById(R.id.category_recycler_view);
@@ -48,6 +45,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mExampleList = new ArrayList<>();
+        mStoreObjects = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
@@ -67,6 +65,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
                                 String categoryName = storeObject.getString("category");
 
                                 mExampleList.add(new ExampleCategory(categoryName));
+                                mStoreObjects.add(storeObject);
                             }
 
                             mCategoryAdapter = new CategoryAdapter(ChoosingCategoryOfItemActivity.this, mExampleList);
@@ -90,12 +89,16 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent categoryIntent = new Intent(this, AddItemtoAddtoListPage.class);
-        ExampleCategory clickedCategory = mExampleList.get(position);
+        Intent addItemIntent = new Intent(this, AddItemtoAddtoListPage.class);
 
-        categoryIntent.putExtra(EXTRA_CATEGORY, clickedCategory.getCategoryName());
 
-        startActivity(categoryIntent);
+        ExampleCategory chosenCategory = mExampleList.get(position);
+        String categoryNameString = chosenCategory.getCategoryName();
+
+        addItemIntent.putExtra("storeCategory", categoryNameString);
+        addItemIntent.putExtra("storeid", passedStoreID);
+
+        startActivity(addItemIntent);
 
     }
 }
