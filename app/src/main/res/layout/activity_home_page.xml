@@ -19,6 +19,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/viewListsofUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Lists"
+        app:layout_constraintBottom_toTopOf="@id/startShoppingButtonHomePage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="25dp"/>
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"

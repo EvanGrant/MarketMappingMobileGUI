@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 
 public class HomePage extends AppCompatActivity {
     private Button button;
+    private Button buttonViewListofUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,27 @@ public class HomePage extends AppCompatActivity {
 
 
         });
+
+        buttonViewListofUser = (Button) findViewById(R.id.viewListsofUserButton);
+        buttonViewListofUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openActivityShowStoresofUserListsPage();
+                 }
+        });
+
+
     }
+
 
     public void openActivityChoosingStorePage()
     {
         Intent intent = new Intent(this, ChoosingStoreActivity.class);
+        startActivity(intent);
+    }
+
+    public void openActivityShowStoresofUserListsPage()
+    {
+        Intent intent = new Intent(this, ShowStoresOfUserListsPage.class);
         startActivity(intent);
     }
 
