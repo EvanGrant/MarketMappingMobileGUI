@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +24,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class AddItemtoAddtoListPage extends AppCompatActivity {
+
+    private Button submitButton;
+
     private RecyclerView mRecyclerView;
     private AddToListAdapter mAddToListAdapter;
     private ArrayList<add_to_list_item> mItemList;
@@ -46,7 +51,21 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
         mItemList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
+
         parseJSON();
+
+        submitButton = (Button) findViewById(R.id.SubmitItemToListButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do similar jig in the choosing store page as here,
+                // need to get id of item I've chosen,
+                // and then push that id to a list with parameters to userid, storeid, and date
+                //For all of this, I need the position I chose
+            }
+        });
+
+
     }
 
     private void parseJSON(){
