@@ -16,6 +16,18 @@ public class AddToListAdapter extends RecyclerView.Adapter<AddToListAdapter.AddT
 private Context mContext;
 private ArrayList<add_to_list_item> mItemList;
 
+private OnItemClickListener mListener;
+
+public interface OnItemClickListener {
+    void onItemClick(View view, int position);
+}
+
+public void setOnItemClickListener(OnItemClickListener listener) {
+    mListener = listener;
+}
+
+int selectedPos = RecyclerView.NO_POSITION; //line for highlighting selected item in recyclerview
+
 public AddToListAdapter(Context context, ArrayList<add_to_list_item> ItemList) {
     mContext = context;
     mItemList = ItemList;
@@ -40,6 +52,8 @@ public AddToListAdapter(Context context, ArrayList<add_to_list_item> ItemList) {
         holder.mShelfNumber.setText("Shelf: " + ShelfNumber);
         holder.mAisleNumber.setText("Aisle: " + AisleNumber);
 
+        holder.itemView.setSelected(selectedPos == position); //line for highlighting selected item in recyclerview
+
 
     }
 
@@ -59,6 +73,24 @@ public AddToListAdapter(Context context, ArrayList<add_to_list_item> ItemList) {
             mFoodName = itemView.findViewById(R.id.text_view_food_name);
             mShelfNumber = itemView.findViewById(R.id.text_view_shelf_of_item);
             mAisleNumber = itemView.findViewById(R.id.text_view_aisle_of_item);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(v, position);
+                        }
+                    }
+
+                    notifyItemChanged(selectedPos);
+                    selectedPos = getLayoutPosition();
+                    notifyItemChanged(selectedPos);
+
+                }
+            });
+
         }
     }
 

@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AddItemtoAddtoListPage extends AppCompatActivity {
+public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToListAdapter.OnItemClickListener {
 
     private Button submitButton;
 
@@ -55,15 +55,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
         parseJSON();
 
         submitButton = (Button) findViewById(R.id.SubmitItemToListButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //do similar jig in the choosing store page as here,
-                // need to get id of item I've chosen,
-                // and then push that id to a list with parameters to userid, storeid, and date
-                //For all of this, I need the position I chose
-            }
-        });
+
 
 
     }
@@ -88,6 +80,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
 
                             mAddToListAdapter = new AddToListAdapter(AddItemtoAddtoListPage.this, mItemList);
                             mRecyclerView.setAdapter(mAddToListAdapter);
+                            mAddToListAdapter.setOnItemClickListener(AddItemtoAddtoListPage.this);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -101,6 +94,22 @@ public class AddItemtoAddtoListPage extends AppCompatActivity {
         });
 
         mRequestQueue.add(jsonArrayRequest);
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //do similar jig in the choosing store page as here,
+                // need to get id of item I've chosen,
+                // and then push that id to a list with parameters to userid, storeid, and date
+                //For all of this, I need the position I chose
+
+            }
+        });
 
     }
 }
