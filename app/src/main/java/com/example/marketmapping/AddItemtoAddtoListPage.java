@@ -30,6 +30,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
     private RecyclerView mRecyclerView;
     private AddToListAdapter mAddToListAdapter;
     private ArrayList<add_to_list_item> mItemList;
+    private ArrayList<JSONObject> mFoodObjects;
     private RequestQueue mRequestQueue;
 
     public String passedCategory = "";
@@ -49,6 +50,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mItemList = new ArrayList<>();
+        mFoodObjects = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -76,6 +78,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                                 int shelfNumber = foodObject.getInt("shelf_id");
 
                                 mItemList.add(new add_to_list_item(foodName, aisleNumber, shelfNumber));
+                                mFoodObjects.add(foodObject);
                             }
 
                             mAddToListAdapter = new AddToListAdapter(AddItemtoAddtoListPage.this, mItemList);
@@ -99,6 +102,25 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
 
     @Override
     public void onItemClick(View view, int position) {
+
+        add_to_list_item chosenFood = mItemList.get(position); //gets value of chosenfood at position and applies to a custom datatype add_to_list_item chosenFood
+        String foodNameString = chosenFood.getFoodName(); //Then translates that into a usable string
+        String food = "";
+
+ /*       try {
+            for (int i = 0; i < mItemList.size(); i++) {
+                if (mItemList.get(i).getFoodName().equals(foodNameString)) {
+                    food = mFoodObjects.get(i).string
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+*/
+
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -95,7 +95,6 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
         ExampleStoreName chosenStore = (mExampleList.get(position)); //this gets the value of the chosenstore at position and applies it to the ExampleStoreName datatype
         String storeNameString = chosenStore.getStoreName(); //then chosenStore gets converted to a string that I can use
-
         String store = "";
 
         try {
