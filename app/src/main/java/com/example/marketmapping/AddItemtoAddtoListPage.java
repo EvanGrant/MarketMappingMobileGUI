@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -22,6 +24,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToListAdapter.OnItemClickListener {
 
@@ -107,10 +111,10 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
         String foodNameString = chosenFood.getFoodName(); //Then translates that into a usable string
         String food = "";
 
- /*       try {
+        try {
             for (int i = 0; i < mItemList.size(); i++) {
                 if (mItemList.get(i).getFoodName().equals(foodNameString)) {
-                    food = mFoodObjects.get(i).string
+                    food = mFoodObjects.get(i).getString("id");
                 }
             }
 
@@ -118,8 +122,9 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
             e.printStackTrace();
         }
 
+        int foodID = Integer.parseInt(food);
 
-*/
+
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +134,36 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                 // need to get id of item I've chosen,
                 // and then push that id to a list with parameters to userid, storeid, and date
                 //For all of this, I need the position I chose
+
+                RequestQueue queue = Volley.newRequestQueue(AddItemtoAddtoListPage.this);
+                String url = "http://10.0.2.2:3000/addItem/1/38";
+
+                StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(AddItemtoAddtoListPage.this, "Response is:" + response, Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AddItemtoAddtoListPage.this, "user is already registered, please sign in", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+                    protected Map<String, String> getParams(){
+
+
+                        Map<String, String> paramV = new HashMap<>();
+                        paramV.put("email", Integer.toString(passedStoreID));
+                        paramV.put("fName", firstName.getText().toString());
+                        paramV.put("lName", lastName.getText().toString());
+                        return paramV;
+
+
+                    }
+                };
+                queue.add(stringRequest);
+
 
             }
         });
