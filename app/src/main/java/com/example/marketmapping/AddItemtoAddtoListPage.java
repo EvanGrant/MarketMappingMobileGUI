@@ -136,9 +136,9 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                 //For all of this, I need the position I chose
 
                 RequestQueue queue = Volley.newRequestQueue(AddItemtoAddtoListPage.this);
-                String url = "http://10.0.2.2:3000/addItem/1/38";
+                String url = "http://10.0.2.2:3000/addlist/";
 
-                StringRequest stringRequest = new StringRequest(Request.Method.PUT, url,
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -154,9 +154,9 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
 
 
                         Map<String, String> paramV = new HashMap<>();
-                        paramV.put("email", Integer.toString(passedStoreID));
-                        paramV.put("fName", firstName.getText().toString());
-                        paramV.put("lName", lastName.getText().toString());
+                        paramV.put("storeid", Integer.toString(passedStoreId));
+                        //paramV.put("userid", firstName.getText().toString()); //uncomment and turn this line into userid gotten from MainActivity page
+                        paramV.put("itemid", Integer.toString(foodID));
                         return paramV;
 
 

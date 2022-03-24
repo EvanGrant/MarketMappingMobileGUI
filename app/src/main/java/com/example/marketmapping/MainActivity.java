@@ -33,6 +33,8 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+    String passedEmail = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                         //Find line of code to see response from RestAPI
                         //With that, find out what it is, then see where you're going wrong
                         Toast.makeText(MainActivity.this, "Welcome User", Toast.LENGTH_SHORT).show();
+
+                        passedEmail = email;
 
                         openHomePage();
                     }
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick (View v) {
 
+
                 openRegisterPage();
 
             }
@@ -104,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
     public void openHomePage()
     {
         Intent intent = new Intent(this, HomePage.class);
+
+        intent.putExtra("passedEmail", passedEmail);
+
         startActivity(intent);
     }
 
