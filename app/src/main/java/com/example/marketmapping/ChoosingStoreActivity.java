@@ -36,10 +36,15 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
     private RequestQueue mRequestQueue;
     public ArrayList<JSONObject> mStoreObjects;
 
+    public int passedUserID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing_store);
+
+        Intent intent = getIntent();
+        passedUserID = intent.getIntExtra("passedUserID", 0);
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -112,7 +117,8 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
 
-        CategoryItemIntent.putExtra("storeid", storeID);
+        CategoryItemIntent.putExtra("storeid", storeID); //passes storeid chosen
+        CategoryItemIntent.putExtra("passedUserID", passedUserID);//passes userid
 
         startActivity(CategoryItemIntent);
     }

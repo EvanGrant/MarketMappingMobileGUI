@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     String urlForGettingUserID = "http://10.0.2.2:3000/users/";
     public ArrayList<JSONObject> mUserIds;
 
-    private RequestQueue mRequestQueue;
-
     public int userID;
 
 
@@ -54,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         EditText passwordbox = findViewById(R.id.passwordBoxActivityMain);
         Button SubmitButtonActivityMain = findViewById(R.id.SubmitButtonActivityMain);
         Button registerButtonActivityMain = findViewById(R.id.registerButtonActivityMain);
-
-        mRequestQueue = Volley.newRequestQueue(this);
 
         mUserIds = new ArrayList<>();
 
@@ -75,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Find line of code to see response from RestAPI
-                        //With that, find out what it is, then see where you're going wrong
+
                         Toast.makeText(MainActivity.this, "Welcome User", Toast.LENGTH_SHORT).show();
 
                         passedEmail = email;
@@ -111,14 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         registerButtonActivityMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-
-
-
-
-                openRegisterPage();
-
-            }
+            public void onClick (View v) { openRegisterPage(); }
         });
     }
 
@@ -126,43 +114,7 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, HomePage.class);
 
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlForGettingUserID, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject userObject = response.getJSONObject(i);
-
-                                mUserIds.add(userObject);
-                            }
-
-                            for (int i = 0; i < mUserIds.size(); i++) {
-                                if (mUserIds.get(i).getString("email").equals(passedEmail))
-                                {
-                                   userID = mUserIds.get(i).getInt("id");
-                                }
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        mRequestQueue.add(jsonArrayRequest);
-
-        intent.putExtra("passedUserID", userID);//FOR SOME REASON NOT PASSING AS THE CORRECT USERID
-        intent.putExtra("passedEmail", passedEmail);
-
-
+        intent.putExtra("passedEmail", passedEmail);//FOR SOME REASON NOT PASSING AS THE CORRECT USERID
 
         startActivity(intent);
     }
