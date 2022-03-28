@@ -32,6 +32,8 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
     public ArrayList<JSONObject> mStoreObjects;
     private RequestQueue mRequestQueue;
 
+    public int passedUserID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
 
         Intent intent = getIntent();
         passedStoreID = intent.getIntExtra("storeid", 0);
+        passedUserID = intent.getIntExtra("passedUserID", 0);
 
         mRecyclerView = findViewById(R.id.category_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -97,6 +100,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
 
         addItemIntent.putExtra("storeCategory", categoryNameString);
         addItemIntent.putExtra("storeid", passedStoreID);
+        addItemIntent.putExtra("passedUserID", passedUserID);
 
         startActivity(addItemIntent);
 
