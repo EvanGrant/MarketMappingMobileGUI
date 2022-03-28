@@ -132,10 +132,6 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //do similar jig in the choosing store page as here,
-                // need to get id of item I've chosen,
-                // and then push that id to a list with parameters to userid, storeid, and date
-                //For all of this, I need the position I chose
 
                 RequestQueue queue = Volley.newRequestQueue(AddItemtoAddtoListPage.this);
                 String url = "http://10.0.2.2:3000/addlist/";
@@ -144,21 +140,21 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(AddItemtoAddtoListPage.this, "Response is:" + response, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddItemtoAddtoListPage.this, "Added Item to List! Response: " + response, Toast.LENGTH_SHORT).show();
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(AddItemtoAddtoListPage.this, "user is already registered, please sign in", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddItemtoAddtoListPage.this, "item is already added to list", Toast.LENGTH_SHORT).show();
                     }
                 }){
                     protected Map<String, String> getParams(){
 
-
                         Map<String, String> paramV = new HashMap<>();
-                        paramV.put("storeid", Integer.toString(passedStoreId));
-                        //paramV.put("userid", firstName.getText().toString()); //uncomment and turn this line into userid gotten from MainActivity page
-                        paramV.put("itemid", Integer.toString(foodID));
+                        paramV.put("storeId", Integer.toString(passedStoreId));
+                        paramV.put("userId", Integer.toString(passedUserID));
+                        paramV.put("itemId", Integer.toString(foodID));
+
                         return paramV;
 
 
