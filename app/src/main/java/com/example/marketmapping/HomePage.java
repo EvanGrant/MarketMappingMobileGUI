@@ -22,11 +22,15 @@ public class HomePage extends AppCompatActivity {
     private Button button;
     private Button buttonViewListofUser;
 
+    public String passedEmail = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        Intent intent = getIntent();
+        passedEmail = intent.getStringExtra("passedEmail");
 
 
 
