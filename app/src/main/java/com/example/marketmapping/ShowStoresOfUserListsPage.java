@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -25,10 +26,15 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity {
     private ArrayList<UserGroceryListForStoreItem> mUserGroceryListForStoreItemList;
     private RequestQueue mRequestQueue;
 
+    public int passedUserID = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_stores_of_user_lists_page);
+
+        Intent intent = getIntent();
+        passedUserID = intent.getIntExtra("passedUserID", 0);
 
         mRecyclerView = findViewById(R.id.ShowingStoresofUserRecyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -43,7 +49,7 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity {
     }
 
     private void parseJSON() {
-/*
+
         String url = "http://10.0.2.2:3000/stores/";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -58,13 +64,13 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity {
                                 String address = storeObject.getString("address");
 
 
-                                mExampleList.add(new ExampleStoreName(storeName));
-                                mStoreObjects.add(storeObject);
+                                mUserGroceryListForStoreItemList.add(new UserGroceryListForStoreItem(storeName, address));
+
                             }
 
-                            mAdapter = new Adapter(ChoosingStoreActivity.this, mExampleList);
-                            mRecyclerView.setAdapter(mAdapter);
-                            mAdapter.setOnItemClickListener(ChoosingStoreActivity.this);
+                            mUserGroceryListForStoreAdapter = new UserGroceryListForStoreAdapter(ShowStoresOfUserListsPage.this, mUserGroceryListForStoreItemList);
+                            mRecyclerView.setAdapter(mUserGroceryListForStoreAdapter);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -81,9 +87,5 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity {
 
 
 
-    }*/
     }
-
-
-
 }

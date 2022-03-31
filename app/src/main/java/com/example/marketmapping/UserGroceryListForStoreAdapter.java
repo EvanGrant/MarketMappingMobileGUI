@@ -17,6 +17,15 @@ import java.util.ArrayList;
 public class UserGroceryListForStoreAdapter extends RecyclerView.Adapter<UserGroceryListForStoreAdapter.UserGroceryListForStoreViewHolder> {
     private Context mContext;
     private ArrayList<UserGroceryListForStoreItem> mUserGroceryListForStoreItemList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener (OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public UserGroceryListForStoreAdapter(Context context, ArrayList<UserGroceryListForStoreItem> userGroceryListForStoreItemList) {
         mContext = context;

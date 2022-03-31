@@ -79,6 +79,9 @@ public class HomePage extends AppCompatActivity {
     public void openActivityShowStoresofUserListsPage()
     {
         Intent intent = new Intent(this, ShowStoresOfUserListsPage.class);
+
+        intent.putExtra("passedUserID", userID);
+
         startActivity(intent);
     }
 
