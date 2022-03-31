@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,8 +26,10 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity implements User
     private UserGroceryListForStoreAdapter mUserGroceryListForStoreAdapter;
     private ArrayList<UserGroceryListForStoreItem> mUserGroceryListForStoreItemList;
     private RequestQueue mRequestQueue;
+    public ArrayList<JSONObject> mStoreObjects;
 
     public int passedUserID = 0;
+    public int storeID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,13 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity implements User
         Intent intent = getIntent();
         passedUserID = intent.getIntExtra("passedUserID", 0);
 
+
         mRecyclerView = findViewById(R.id.ShowingStoresofUserRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mUserGroceryListForStoreItemList = new ArrayList<>();
+        mStoreObjects = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
@@ -65,7 +70,7 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity implements User
 
 
                                 mUserGroceryListForStoreItemList.add(new UserGroceryListForStoreItem(storeName, address));
-
+                                mStoreObjects.add(storeObject);
                             }
 
                             mUserGroceryListForStoreAdapter = new UserGroceryListForStoreAdapter(ShowStoresOfUserListsPage.this, mUserGroceryListForStoreItemList);
@@ -91,8 +96,32 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity implements User
     }
 
     @Override
-    public void onItemClick(int position) {
-        //Intent intent = new intent(this, (this will be the next page));
-        //startActivity(this will be the next page);
+    public void onItemClick(View view, int position) {
+
+        UserGroceryListForStoreItem chosenStore = (mUserGroceryListForStoreItemList.get(position)); //this gets the value of the chosenstore at position and applies it to the UserGroceryListForStoreItem datatype
+        String storeNameString = chosenStore.getStoreName(); //then chosenStore gets converted to a string that I can use
+        String store = "";
+
+        try {
+            for (int i = 0; i < mUserGroceryListForStoreItemList.size(); i++) {
+                if (mUserGroceryListForStoreItemList.get(i).getStoreName().equals(storeNameString)) {
+                    store = mStoreObjects.get(i).getString("id");
+                }
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        storeID = Integer.parseInt(store);
+
+
+
+        Intent intent = new Intent(this, (ShowContentsOfListPage.class));
+
+        intent.putExtra("passedUserID", passedUserID);
+        intent.putExtra("passedStoreID" , storeID);
+
+        startActivity(intent);
     }
 }
