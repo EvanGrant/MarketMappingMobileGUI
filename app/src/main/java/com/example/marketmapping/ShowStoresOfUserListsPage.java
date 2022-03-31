@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ShowStoresOfUserListsPage extends AppCompatActivity {
+public class ShowStoresOfUserListsPage extends AppCompatActivity implements UserGroceryListForStoreAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private UserGroceryListForStoreAdapter mUserGroceryListForStoreAdapter;
     private ArrayList<UserGroceryListForStoreItem> mUserGroceryListForStoreItemList;
@@ -70,6 +70,7 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity {
 
                             mUserGroceryListForStoreAdapter = new UserGroceryListForStoreAdapter(ShowStoresOfUserListsPage.this, mUserGroceryListForStoreItemList);
                             mRecyclerView.setAdapter(mUserGroceryListForStoreAdapter);
+                            mUserGroceryListForStoreAdapter.setOnItemClickListener(ShowStoresOfUserListsPage.this);
 
 
                         } catch (JSONException e) {
@@ -87,5 +88,11 @@ public class ShowStoresOfUserListsPage extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        //Intent intent = new intent(this, (this will be the next page));
+        //startActivity(this will be the next page);
     }
 }

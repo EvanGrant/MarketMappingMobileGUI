@@ -65,6 +65,18 @@ public class UserGroceryListForStoreAdapter extends RecyclerView.Adapter<UserGro
             super(itemView);
             mTextViewStoreName = itemView.findViewById(R.id.text_view_store_from_list_name);
             mTextViewAddress = itemView.findViewById(R.id.text_view_address_of_store);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
