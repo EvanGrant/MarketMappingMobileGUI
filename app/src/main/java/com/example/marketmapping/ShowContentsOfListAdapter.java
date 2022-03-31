@@ -23,7 +23,7 @@ private ArrayList<ShowContentsOfListItem> mShowContentsOfListList;
     @NonNull
     @Override
     public ShowContentsOfListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.add_to_list_item, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.show_contents_of_list_item, parent, false);
         return new ShowContentsOfListViewHolder(v);
     }
 
@@ -35,8 +35,8 @@ private ArrayList<ShowContentsOfListItem> mShowContentsOfListList;
         int AisleNumber = currentItem.getAisleNumber();
         int ShelfNumber = currentItem.getShelfNumber();
 
-        holder.mTextViewAisleNumber.setText(AisleNumber);
-        holder.mTextViewShelfNumber.setText(ShelfNumber);
+        holder.mTextViewAisleNumber.setText("Aisle: " + AisleNumber);
+        holder.mTextViewShelfNumber.setText("Section: " + ShelfNumber);
         holder.mTextViewFoodName.setText(FoodName);
     }
 
@@ -56,9 +56,9 @@ private ArrayList<ShowContentsOfListItem> mShowContentsOfListList;
         public ShowContentsOfListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mTextViewFoodName = itemView.findViewById(R.id.text_view_food_name);
-            mTextViewShelfNumber = itemView.findViewById(R.id.text_view_shelf_of_item);
-            mTextViewAisleNumber = itemView.findViewById(R.id.text_view_aisle_of_item);
+            mTextViewFoodName = itemView.findViewById(R.id.text_view_food_name_contents);
+            mTextViewShelfNumber = itemView.findViewById(R.id.text_view_section_of_item_contents);
+            mTextViewAisleNumber = itemView.findViewById(R.id.text_view_aisle_of_item_contents);
 
         }
     }

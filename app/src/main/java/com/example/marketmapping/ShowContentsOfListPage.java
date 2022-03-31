@@ -64,7 +64,7 @@ public class ShowContentsOfListPage extends AppCompatActivity {
 
                                 String foodName = foodObject.getString("name");
                                 int aisleNumber = foodObject.getInt("aisle_id");
-                                int shelfNumber = foodObject.getInt("shelf_id"); //SHELF isnt getting cuz there is no shelf number in the lists, change all to section id
+                                int shelfNumber = foodObject.getInt("section_id");
 
                                 mShowContentsOfListList.add(new ShowContentsOfListItem(foodName, aisleNumber, shelfNumber));
                             }

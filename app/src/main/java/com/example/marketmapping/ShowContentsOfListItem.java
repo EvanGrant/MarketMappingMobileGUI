@@ -17,11 +17,11 @@ public class ShowContentsOfListItem {
     }
 
     public int getAisleNumber() {
-        return mShelfNumber;
+        return mAisleNumber;
     }
 
     public int getShelfNumber() {
-        return mAisleNumber;
+        return mShelfNumber;
     }
 
 }
