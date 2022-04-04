@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class HomePage extends AppCompatActivity {
     private Button button;
     private Button buttonViewListofUser;
+    private Button startShoppingButton;
     String urlForGettingUserID = "http://10.0.2.2:3000/users/";
     public ArrayList<JSONObject> mUserIds;
 
@@ -52,15 +53,18 @@ public class HomePage extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openActivityChoosingStorePage(); }
-
-
         });
 
         buttonViewListofUser = (Button) findViewById(R.id.viewListsofUserButton);
         buttonViewListofUser.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { openActivityShowStoresofUserListsPage();
-                 }
+            public void onClick(View v) { openActivityShowStoresofUserListsPage(); }
+        });
+
+        startShoppingButton = (Button) findViewById(R.id.StartShoppingButton);
+        startShoppingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openActivityShoppingChoosingListPage(); }
         });
 
 
@@ -81,6 +85,12 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this, ShowStoresOfUserListsPage.class);
 
         intent.putExtra("passedUserID", userID);
+
+        startActivity(intent);
+    }
+
+    public void openActivityShoppingChoosingListPage() {
+        Intent intent = new Intent(this, ShoppingChoosingListPage.class);
 
         startActivity(intent);
     }
