@@ -1,98 +1,98 @@
 package com.example.marketmapping;
 
+import android.view.View;
+import android.widget.Toast;
+
 import java.util.*;
 
+/*
+
+class Graph
+{
+    int V;	// Number of nodes.
+    Vector<Integer>[] adj;	// Number of vertices
+
+    int level;
+
+    @SuppressWarnings("unchecked")
+    Graph(int V)	// Constructor
+    {
+        this.V = V;
+        this.adj = new Vector[2 * V];
+
+        for(int i = 0; i < 2 * V; i++)
+            this.adj[i] = new Vector<>();
+    } // End Graph Constructor
+
+    public void addEdge(int v, int w, int weight)
+    {
+        if(weight == 2)
+        {
+            adj[v].add(v + this.V);
+            adj[v + this.V].add(w);
+        }else
+            adj[v].add(w);
+    } // End addEdge
+
+    public int printShortestPath(int[] parent, int s, int d)
+    {
+        level = 0;
+
+        if (parent[s] == -1)
+        {
+            System.out.printf("Shortest Path between " + "%d and %d is %s ",s,d,s);
+            return level;
+        }
+
+        printShortestPath(parent, parent[s], d);
+
+        level++;
+        if(s < this.V)
+            System.out.printf("%d ", s);
+
+        return level;
+
+    } // End printShortestPath
+
+    public int findShortestPath(int src, int dest)
+    {
+        boolean[] visited = new boolean[2 * this.V];
+        int[] parent = new int[2 * this.V];
+
+        for (int i = 0; i < 2 * this.V; i++)
+        {
+            visited[i] = false;
+            parent[i] = -1;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        visited[src] = true;
+        queue.add(src);
+
+        while(!queue.isEmpty())
+        {
+            int s = queue.peek();
+
+            if(s == dest)
+                return printShortestPath(parent, s, dest);
+            queue.poll();
+
+            for(int i : this.adj[s])
+            {
+                if(!visited[i])
+                {
+                    visited[i] = true;
+                    queue.add(i);
+                    parent[i] = s;
+                }
+            }
+        }
+        return 0;
+    } // End findShortestPath
+} // End Graph Class
 
 public class AlgorithmForShoppingInStore {
-
-
-    class GFG
-    {
-        class Graph
-        {
-            int V;	// Number of nodes.
-            Vector<Integer>[] adj;	// Number of vertices
-
-            int level;
-
-            @SuppressWarnings("unchecked")
-            Graph(int V)	// Constructor
-            {
-                this.V = V;
-                this.adj = new Vector[2 * V];
-
-                for(int i = 0; i < 2 * V; i++)
-                    this.adj[i] = new Vector<>();
-            } // End Graph Constructor
-
-            public void addEdge(int v, int w, int weight)
-            {
-                if(weight == 2)
-                {
-                    adj[v].add(v + this.V);
-                    adj[v + this.V].add(w);
-                }else
-                    adj[v].add(w);
-            } // End addEdge
-
-            public int printShortestPath(int[] parent, int s, int d)
-            {
-                level = 0;
-
-                if (parent[s] == -1)
-                {
-                    System.out.printf("Shortest Path between " + "%d and %d is %s ",s,d,s);
-                    return level;
-                }
-
-                printShortestPath(parent, parent[s], d);
-
-                level++;
-                if(s < this.V)
-                    System.out.printf("%d ", s);
-
-                return level;
-
-            } // End printShortestPath
-
-            public int findShortestPath(int src, int dest)
-            {
-                boolean[] visited = new boolean[2 * this.V];
-                int[] parent = new int[2 * this.V];
-
-                for (int i = 0; i < 2 * this.V; i++)
-                {
-                    visited[i] = false;
-                    parent[i] = -1;
-                }
-
-                Queue<Integer> queue = new LinkedList<>();
-
-                visited[src] = true;
-                queue.add(src);
-
-                while(!queue.isEmpty())
-                {
-                    int s = queue.peek();
-
-                    if(s == dest)
-                        return printShortestPath(parent, s, dest);
-                    queue.poll();
-
-                    for(int i : this.adj[s])
-                    {
-                        if(!visited[i])
-                        {
-                            visited[i] = true;
-                            queue.add(i);
-                            parent[i] = s;
-                        }
-                    }
-                }
-                return 0;
-            } // End findShortestPath
-        } // End Graph Class
-
 
         public void order(Graph g, int[] nodes)
         {
@@ -101,7 +101,9 @@ public class AlgorithmForShoppingInStore {
             //return nodes;
         }
 
-        public void main(String[] args)
+
+
+        public void RunFuction()
         {
             int V = 24;
 
@@ -184,7 +186,13 @@ public class AlgorithmForShoppingInStore {
             for (int node: nodes)
             {
                 System.out.println(node);
+
+
             }
         } // End Main
-    }// end GFG
+    // end GFG
 }
+
+*/
+
+
