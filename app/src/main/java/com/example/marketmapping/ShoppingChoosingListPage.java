@@ -18,22 +18,8 @@ public class ShoppingChoosingListPage extends AppCompatActivity {
 
 
 
-        List1Button = (Button) findViewById(R.id.List1Button);
-        List1Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { OpenActivityShoppingWithChosenListPage(); }
-        });
-
-
     }
 
-    public void OpenActivityShoppingWithChosenListPage() {
-
-        Intent intent = new Intent(this, ShoppingWithChosenListPage.class);
-
-        startActivity(intent);
-
-    }
 
 
 }

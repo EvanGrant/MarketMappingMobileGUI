@@ -94,6 +94,7 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //select existing list button
     public void openActivityShoppingChoosingListPage() {
         Intent intent = new Intent(this, ShoppingChoosingListPage.class);
 
