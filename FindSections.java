@@ -1,3 +1,5 @@
+
+
 package Algo;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-class FindSections
+/*
+
+public class FindSections
 {
 	 private String[] parseJSON(String storeId, String userId, String listName) {
 		 
@@ -67,3 +71,7 @@ class FindSections
 	    }
 	 
 }// end FindSections
+
+
+
+*/

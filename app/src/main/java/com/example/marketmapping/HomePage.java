@@ -48,6 +48,11 @@ public class HomePage extends AppCompatActivity {
 
         parseJSON();
 
+        //locally defined variables for testing purposes
+        String[] testArray;
+        testArray = new String[1000];
+
+        testArray = parseJSON_Array(3, 38, "List 2");
 
         button = (Button) findViewById(R.id.startShoppingButtonHomePage);
         button.setOnClickListener(new View.OnClickListener() {
@@ -127,5 +132,71 @@ public class HomePage extends AppCompatActivity {
         queue.add(jsonArrayRequest);
 
     }
+
+    //This is going to be used for running the list
+    public String[] parseJSON_Array(int storeId, int userId, String listName) {
+
+        String[] arr; //initialize an array
+        arr = new String[1000];
+
+        int section_id = 0;
+
+        String url = "http://10.0.2.2:3000/findList/3/38/List 2/";
+
+        RequestQueue queue = Volley.newRequestQueue(HomePage.this);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject storeObject = response.getJSONObject(i);
+
+                                String aisle = storeObject.getString("aisleId");
+                                String section = storeObject.getString("sectionId");
+                                String name = storeObject.getString("name");
+                                String section_id = storeObject.getString("section_id");
+
+                                //int section_id_int = Integer.parseInt(section_id);
+                                int section_id_int = i;
+
+                                if(arr[section_id_int] == null) {
+                                    arr[section_id_int] = "go to aisle " + aisle + ", section " + section + " for " + name; //add the aisle and section number and the name
+                                }else {
+
+                                    arr[section_id_int] += " and " + name; //add the name of the item
+                                }
+                            }
+
+                            doStuff(arr);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        queue.add(jsonArrayRequest);
+
+        return arr;
+
+    }
+
+    //do everything that pertains to the array arr here
+    private void doStuff(String[] arr) {
+
+        Toast.makeText(HomePage.this, "Response: " + arr[0], Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomePage.this, "Response: " + arr[1], Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomePage.this, "Response: " + arr[2], Toast.LENGTH_SHORT).show();
+
+
+    }
+
 
 }
