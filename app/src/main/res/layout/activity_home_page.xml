@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/startShoppingButtonHomePage"
+        android:id="@+id/createListHomePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="188dp"
@@ -25,8 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Select Existing List"
-        app:layout_constraintBottom_toTopOf="@id/startShoppingButtonHomePage"
+        android:text="Edit Existing List"
+        app:layout_constraintBottom_toTopOf="@id/createListHomePage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/startShoppingButtonHomePage"
+        app:layout_constraintTop_toBottomOf="@id/createListHomePage"
         app:layout_constraintVertical_bias="0.685" />
 
     <com.google.android.material.appbar.AppBarLayout

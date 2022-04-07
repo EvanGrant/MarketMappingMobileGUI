@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 
 public class HomePage extends AppCompatActivity {
-    private Button button;
+    private Button buttonCreateList;
     private Button buttonViewListofUser;
     private Button startShoppingButton;
     String urlForGettingUserID = "http://10.0.2.2:3000/users/";
@@ -59,8 +59,8 @@ public class HomePage extends AppCompatActivity {
 
          */
 
-        button = (Button) findViewById(R.id.startShoppingButtonHomePage);
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonCreateList = (Button) findViewById(R.id.createListHomePage);
+        buttonCreateList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openActivityChoosingStorePage(); }
         });
