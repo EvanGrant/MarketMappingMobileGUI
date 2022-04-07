@@ -48,11 +48,16 @@ public class HomePage extends AppCompatActivity {
 
         parseJSON();
 
+        /*
+
         //locally defined variables for testing purposes
         String[] testArray;
         testArray = new String[1000];
 
         testArray = parseJSON_Array(3, 38, "List 2");
+
+
+         */
 
         button = (Button) findViewById(R.id.startShoppingButtonHomePage);
         button.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +139,8 @@ public class HomePage extends AppCompatActivity {
 
     }
 
+    /*
+
     //This is going to be used for running the list
     public String[] parseJSON_Array(int storeId, int userId, String listName) {
 
@@ -198,6 +205,8 @@ public class HomePage extends AppCompatActivity {
 
 
     }
+
+     */
 
 
 }
