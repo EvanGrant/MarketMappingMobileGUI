@@ -103,6 +103,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
         addItemIntent.putExtra("storeCategory", categoryNameString);
         addItemIntent.putExtra("storeid", passedStoreID);
         addItemIntent.putExtra("passedUserID", passedUserID);
+        addItemIntent.putExtra("passedListName" , passedListName); //passes ListName
 
         startActivity(addItemIntent);
 

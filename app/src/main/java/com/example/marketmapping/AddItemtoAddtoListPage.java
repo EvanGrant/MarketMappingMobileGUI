@@ -40,6 +40,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
     public String passedCategory = "";
     public int passedStoreId = 0;
     public int passedUserID = 0;
+    public String passedListName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
         passedCategory = intent.getStringExtra("storeCategory");
         passedStoreId = intent.getIntExtra("storeid",0);
         passedUserID = intent.getIntExtra("passedUserID", 0);
+        passedListName = intent.getStringExtra("passedListName");
 
         mRecyclerView = findViewById(R.id.adding_item_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -154,6 +156,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                         paramV.put("storeId", Integer.toString(passedStoreId));
                         paramV.put("userId", Integer.toString(passedUserID));
                         paramV.put("itemId", Integer.toString(foodID));
+                        paramV.put("listName", passedListName);
 
                         return paramV;
 
