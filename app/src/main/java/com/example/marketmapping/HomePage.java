@@ -74,7 +74,7 @@ public class HomePage extends AppCompatActivity {
         startShoppingButton = (Button) findViewById(R.id.StartShoppingButton);
         startShoppingButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { openActivityShoppingChoosingListPage(); }
+            public void onClick(View v) { openActivityShowListNamesPage(); } //Switch over to new page ShowListNames
         });
 
 
@@ -100,8 +100,8 @@ public class HomePage extends AppCompatActivity {
     }
 
     //select existing list button
-    public void openActivityShoppingChoosingListPage() {
-        Intent intent = new Intent(this, ShoppingChoosingListPage.class);
+    public void openActivityShowListNamesPage() {
+        Intent intent = new Intent(this, ShowListNamesPage.class);
 
         startActivity(intent);
     }

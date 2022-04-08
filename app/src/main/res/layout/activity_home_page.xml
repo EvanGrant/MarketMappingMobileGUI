@@ -7,7 +7,7 @@
     tools:context=".HomePage"
     android:background="@drawable/aisleshoppingblurred">
 
-
+ <!-- This Button is for creating a list -->
     <Button
         android:id="@+id/createListHomePage"
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+<!-- This Button is for adding items to a list, which is separate to creating the list -->
     <Button
         android:id="@+id/viewListsofUserButton"
         android:layout_width="wrap_content"
@@ -31,6 +31,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+ <!-- This Button is for Shopping with a list already in the system-->
     <Button
         android:id="@+id/StartShoppingButton"
         android:layout_width="wrap_content"
