@@ -59,22 +59,25 @@ public class HomePage extends AppCompatActivity {
 
          */
 
+        //This Button is for creating a list
         buttonCreateList = (Button) findViewById(R.id.createListHomePage);
         buttonCreateList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openActivityNamingListPage(); }
         });
 
+        //This Button is for adding items to a list, which is separate to creating the list
         buttonViewListofUser = (Button) findViewById(R.id.viewListsofUserButton);
         buttonViewListofUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openActivityShowStoresofUserListsPage(); }
         });
 
+        //This Button is for Shopping with a list already in the system
         startShoppingButton = (Button) findViewById(R.id.StartShoppingButton);
         startShoppingButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { openActivityShowListNamesPage(); } //Switch over to new page ShowListNames
+            public void onClick(View v) { openActivityShowListNamesPage(); }
         });
 
 
@@ -102,6 +105,8 @@ public class HomePage extends AppCompatActivity {
     //select existing list button
     public void openActivityShowListNamesPage() {
         Intent intent = new Intent(this, ShowListNamesPage.class);
+
+        intent.putExtra("passedUserID", userID);
 
         startActivity(intent);
     }
