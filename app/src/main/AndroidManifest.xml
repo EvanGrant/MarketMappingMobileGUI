@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MarketMapping">
         <activity
+            android:name=".NamingListPage"
+            android:exported="false" />
+        <activity
             android:name=".ShoppingWithChosenListPage"
             android:exported="true" />
         <activity

@@ -1,5 +1,5 @@
 package com.example.marketmapping;
-
+//THIS IS FOR CHOOSINGSTOREACTIVITY
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,5 +1,5 @@
 package com.example.marketmapping;
-
+//THIS FOR CHOOSINGCATEGORYACTIVITY
 public class ExampleCategory {
     private String mCategoryName;
 

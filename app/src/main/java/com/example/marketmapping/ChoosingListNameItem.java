@@ -1,9 +1,9 @@
 package com.example.marketmapping;
 
-public class ListNameItem {
+public class ChoosingListNameItem {
     private String mListName;
 
-    public ListNameItem(String listName) { mListName = listName; }
+    public ChoosingListNameItem(String listName) { mListName = listName; }
 
     public String getListName() { return mListName; }
 }
