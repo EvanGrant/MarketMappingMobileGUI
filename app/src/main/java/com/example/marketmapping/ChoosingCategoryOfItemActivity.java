@@ -33,6 +33,7 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
     private RequestQueue mRequestQueue;
 
     public int passedUserID;
+    public String passedListName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,9 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_choosing_category_of_item);
 
         Intent intent = getIntent();
-        passedStoreID = intent.getIntExtra("storeid", 0);
+        passedStoreID = intent.getIntExtra("storeID", 0);
         passedUserID = intent.getIntExtra("passedUserID", 0);
+        passedListName = intent.getStringExtra("passedListName");
 
         mRecyclerView = findViewById(R.id.category_recycler_view);
         mRecyclerView.setHasFixedSize(true);

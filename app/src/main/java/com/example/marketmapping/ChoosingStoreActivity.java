@@ -37,6 +37,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
     public ArrayList<JSONObject> mStoreObjects;
 
     public int passedUserID;
+    public String passedListName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
         Intent intent = getIntent();
         passedUserID = intent.getIntExtra("passedUserID", 0);
+        passedListName = intent.getStringExtra("passedListName");
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -117,8 +119,9 @@ public class ChoosingStoreActivity extends AppCompatActivity implements Adapter.
 
         Intent CategoryItemIntent = new Intent(this, ChoosingCategoryOfItemActivity.class);
 
-        CategoryItemIntent.putExtra("storeid", storeID); //passes storeid chosen
+        CategoryItemIntent.putExtra("storeID", storeID); //passes storeID chosen
         CategoryItemIntent.putExtra("passedUserID", passedUserID);//passes userid
+        CategoryItemIntent.putExtra("passedListName" , passedListName); //passes ListName
 
         startActivity(CategoryItemIntent);
     }

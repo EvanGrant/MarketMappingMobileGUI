@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, HomePage.class);
 
-        intent.putExtra("passedEmail", passedEmail);//FOR SOME REASON NOT PASSING AS THE CORRECT USERID
+        intent.putExtra("passedEmail", passedEmail);
 
         startActivity(intent);
     }

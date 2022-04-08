@@ -62,7 +62,7 @@ public class HomePage extends AppCompatActivity {
         buttonCreateList = (Button) findViewById(R.id.createListHomePage);
         buttonCreateList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { openActivityChoosingStorePage(); }
+            public void onClick(View v) { openActivityNamingListPage(); }
         });
 
         buttonViewListofUser = (Button) findViewById(R.id.viewListsofUserButton);
@@ -81,9 +81,9 @@ public class HomePage extends AppCompatActivity {
     }
 
 
-    public void openActivityChoosingStorePage()
+    public void openActivityNamingListPage()
     {
-        Intent intent = new Intent(this, ChoosingStoreActivity.class);
+        Intent intent = new Intent(this, NamingListPage.class);
 
         intent.putExtra("passedUserID", userID);
 
