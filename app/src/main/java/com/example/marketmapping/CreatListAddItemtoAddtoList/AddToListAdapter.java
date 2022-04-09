@@ -1,7 +1,6 @@
-package com.example.marketmapping;
+package com.example.marketmapping.CreatListAddItemtoAddtoList;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.marketmapping.R;
 
 import java.util.ArrayList;
 

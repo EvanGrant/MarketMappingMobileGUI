@@ -1,7 +1,4 @@
-package com.example.marketmapping;
-
-import android.view.View;
-import android.widget.Toast;
+package com.example.marketmapping.Misc;
 
 import java.util.*;
 

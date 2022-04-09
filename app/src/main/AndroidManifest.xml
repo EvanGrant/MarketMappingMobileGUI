@@ -28,7 +28,7 @@
             android:name=".ShowStoresOfUserListsPage"
             android:exported="true" />
         <activity
-            android:name=".AddItemtoAddtoListPage"
+            android:name=".CreatListAddItemtoAddtoList.AddItemtoAddtoListPage"
             android:exported="false" />
         <activity
             android:name=".CreateListChoosingCategoryOfItem.ChoosingCategoryOfItemActivity"
