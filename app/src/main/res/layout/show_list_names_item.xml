@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="List Names"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="26sp"/>
 
         <TextView
             android:id="@+id/text_view_store_name_from_show_list_name"

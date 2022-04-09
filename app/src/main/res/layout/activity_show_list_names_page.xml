@@ -11,6 +11,6 @@
         android:id="@+id/show_list_names_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/our_teal"/>
+        android:background="@drawable/aisleshoppingblurred"/>
 
 </RelativeLayout>
