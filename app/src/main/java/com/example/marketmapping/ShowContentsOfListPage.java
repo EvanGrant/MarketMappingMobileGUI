@@ -1,5 +1,5 @@
 package com.example.marketmapping;
-
+//THIS IS FOR EDIT LIST ROUTE, GETS CREATED WHEN CLICKING ON EDIT LIST BUTTON IN HOME PAGE
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
