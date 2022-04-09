@@ -97,7 +97,7 @@ public class ShowListNamesPage extends AppCompatActivity implements ShowListName
         ShowListNamesItem clickedItem = mShowListNamesList.get(position);
 
         itemIntent.putExtra("passedListName", chosenListString);
-
+        itemIntent.putExtra("passedUserID", passedUserID);
 
         startActivity(itemIntent);
 

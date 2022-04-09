@@ -32,6 +32,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
     private RequestQueue mRequestQueue;
 
     public String passedListName = "";
+    public int passedUserID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,8 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        passedListName= intent.getStringExtra("passedListName");
+        passedListName = intent.getStringExtra("passedListName");
+        passedUserID = intent.getIntExtra("passedUserID", 0);
 
         mRecyclerView = findViewById(R.id.shopping_showing_list_contents_recycler_view);
         mRecyclerView.setHasFixedSize(true);
