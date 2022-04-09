@@ -1,4 +1,4 @@
-package com.example.marketmapping;
+package com.example.marketmapping.CreateListChoosingCategoryOfItem;
 //THIS FOR CHOOSINGCATEGORYACTIVITY
 public class ExampleCategory {
     private String mCategoryName;
