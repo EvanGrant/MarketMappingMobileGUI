@@ -1,5 +1,5 @@
-package com.example.marketmapping;
-
+package com.example.marketmapping.EditListShowContentsOfList;
+//THIS IS FOR EDIT LIST ROUTE, GETS CREATED WHEN CLICKING ON A STORE IN EDIT LIST BUTTON IN HOME PAGE
 public class ShowContentsOfListItem {
 
     private String mFoodName;

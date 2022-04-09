@@ -16,16 +16,13 @@
             android:name=".ShoppingShowingListContents.ShoppingShowingListContentsPage"
             android:exported="false" />
         <activity
-            android:name=".ShowListNamesPage"
+            android:name=".ShoppingShowListNames.ShowListNamesPage"
             android:exported="true" />
         <activity
             android:name=".NamingListPage"
             android:exported="false" />
         <activity
-            android:name=".ShoppingWithChosenListPage"
-            android:exported="true" />
-        <activity
-            android:name=".ShowContentsOfListPage"
+            android:name=".EditListShowContentsOfList.ShowContentsOfListPage"
             android:exported="false" />
         <activity
             android:name=".ShowStoresOfUserListsPage"

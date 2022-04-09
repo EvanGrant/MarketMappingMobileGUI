@@ -1,4 +1,4 @@
-package com.example.marketmapping;
+package com.example.marketmapping.ShoppingShowListNames;
 
 public class ShowListNamesItem {
     private String mListNamesShowList;

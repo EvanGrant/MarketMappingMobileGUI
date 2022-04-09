@@ -1,5 +1,5 @@
-package com.example.marketmapping;
-
+package com.example.marketmapping.EditListShowContentsOfList;
+//THIS IS FOR EDIT LIST ROUTE, GETS CREATED WHEN CLICKING ON A STORE IN EDIT LIST BUTTON IN HOME PAGE
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.marketmapping.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,34 +21,39 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ShowListNamesPage extends AppCompatActivity {
+public class ShowContentsOfListPage extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private ShowListNamesAdapter mShowListNamesAdapter;
-    private ArrayList<ShowListNamesItem> mShowListNamesList;
+    private ShowContentsOfListAdapter mShowContentsOfListAdapter;
+    private ArrayList<ShowContentsOfListItem> mShowContentsOfListList;
     private RequestQueue mRequestQueue;
 
+    public int passedStoreID = 0;
     public int passedUserID = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_list_names_page);
+        setContentView(R.layout.activity_show_contents_of_list_page);
 
         Intent intent = getIntent();
-        passedUserID = intent.getIntExtra("passedUserID", 0);
+        passedStoreID = intent.getIntExtra("passedStoreID", 0);
+        passedUserID = intent.getIntExtra("passedUserID",0);
 
-        mRecyclerView = findViewById(R.id.show_list_names_recycler_view);
+        mRecyclerView = findViewById(R.id.show_contents_of_list_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mShowListNamesList = new ArrayList<>();
+        mShowContentsOfListList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
+
         parseJSON();
+
     }
 
     private void parseJSON(){
-        String url = "http://10.0.2.2:3000/getListNames/" + passedUserID + "/";
+        String url = "http://10.0.2.2:3000/findlist/" + passedUserID + "/" + passedStoreID;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -55,17 +61,17 @@ public class ShowListNamesPage extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             for (int i = 0; i < response.length(); i++) {
-                                JSONObject listObject = response.getJSONObject(i);
+                                JSONObject foodObject = response.getJSONObject(i);
 
-                                String listName = listObject.getString("listName");
-                                String storeName = listObject.getString("name");
+                                String foodName = foodObject.getString("name");
+                                int aisleNumber = foodObject.getInt("aisle_id");
+                                int shelfNumber = foodObject.getInt("section_id");
 
-
-                                mShowListNamesList.add(new ShowListNamesItem(listName, storeName));
+                                mShowContentsOfListList.add(new ShowContentsOfListItem(foodName, aisleNumber, shelfNumber));
                             }
 
-                            mShowListNamesAdapter = new ShowListNamesAdapter(ShowListNamesPage.this, mShowListNamesList);
-                            mRecyclerView.setAdapter(mShowListNamesAdapter);
+                            mShowContentsOfListAdapter = new ShowContentsOfListAdapter(ShowContentsOfListPage.this, mShowContentsOfListList);
+                            mRecyclerView.setAdapter(mShowContentsOfListAdapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

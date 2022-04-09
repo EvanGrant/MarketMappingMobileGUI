@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowContentsOfListPage">
+    tools:context=".EditListShowContentsOfList.ShowContentsOfListPage">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/show_contents_of_list_recycler_view"
