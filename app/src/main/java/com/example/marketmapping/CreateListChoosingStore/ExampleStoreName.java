@@ -1,4 +1,4 @@
-package com.example.marketmapping;
+package com.example.marketmapping.CreateListChoosingStore;
 
 public class ExampleStoreName {
     private String mStoreName;

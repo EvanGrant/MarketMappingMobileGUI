@@ -43,7 +43,7 @@
             android:name=".HomePage"
             android:exported="false" />
         <activity
-            android:name=".ChoosingStoreActivity"
+            android:name=".CreateListChoosingStore.ChoosingStoreActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

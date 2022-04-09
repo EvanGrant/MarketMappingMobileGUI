@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.marketmapping.CreateListChoosingStore.ChoosingStoreActivity;
+
 public class NamingListPage extends AppCompatActivity {
 
     private Button listNameButton;
