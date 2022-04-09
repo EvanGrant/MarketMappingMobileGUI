@@ -16,6 +16,15 @@ import java.util.ArrayList;
 public class ShowListNamesAdapter extends RecyclerView.Adapter<ShowListNamesAdapter.ShowListNamesViewHolder> {
     private Context mContext;
     private ArrayList<ShowListNamesItem> mShowListNamesList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public ShowListNamesAdapter(Context context, ArrayList<ShowListNamesItem> showListNamesList) {
         mContext = context;
@@ -55,6 +64,19 @@ public class ShowListNamesAdapter extends RecyclerView.Adapter<ShowListNamesAdap
             super(itemView);
             mTextViewListNames = itemView.findViewById(R.id.text_view_list_name_from_show_list_name);
             mTextViewStoreName = itemView.findViewById(R.id.text_view_store_name_from_show_list_name);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(v, position);
+                        }
+                    }
+                }
+            });
+
         }
     }
 

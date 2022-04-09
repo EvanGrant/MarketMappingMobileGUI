@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +15,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marketmapping.R;
+import com.example.marketmapping.ShoppingShowingListContents.ShoppingShowingListContentsItem;
+import com.example.marketmapping.ShoppingShowingListContents.ShoppingShowingListContentsPage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ShowListNamesPage extends AppCompatActivity {
+public class ShowListNamesPage extends AppCompatActivity implements ShowListNamesAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private ShowListNamesAdapter mShowListNamesAdapter;
     private ArrayList<ShowListNamesItem> mShowListNamesList;
@@ -67,6 +70,7 @@ public class ShowListNamesPage extends AppCompatActivity {
 
                             mShowListNamesAdapter = new ShowListNamesAdapter(ShowListNamesPage.this, mShowListNamesList);
                             mRecyclerView.setAdapter(mShowListNamesAdapter);
+                            mShowListNamesAdapter.setOnItemClickListener(ShowListNamesPage.this);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -83,4 +87,19 @@ public class ShowListNamesPage extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+
+        ShowListNamesItem chosenList = (mShowListNamesList.get(position)); //grabs the list chosen in the onitemclick through positon in the arraylist mShowListNamesList
+        String chosenListString = chosenList.getListNamesShowList(); // converts to String to use for concatenation for next page
+
+        Intent itemIntent = new Intent(this, ShoppingShowingListContentsPage.class);
+        ShowListNamesItem clickedItem = mShowListNamesList.get(position);
+
+        itemIntent.putExtra("passedListName", chosenListString);
+
+
+        startActivity(itemIntent);
+
+    }
 }

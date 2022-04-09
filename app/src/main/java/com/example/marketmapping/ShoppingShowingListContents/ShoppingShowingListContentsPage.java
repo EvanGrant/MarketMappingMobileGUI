@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -30,10 +31,16 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
     private ArrayList<ShoppingShowingListContentsItem> mShoppingShowingListContentsList;
     private RequestQueue mRequestQueue;
 
+    public String passedListName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_showing_list_contents_page);
+
+        Intent intent = getIntent();
+
+        passedListName= intent.getStringExtra("passedListName");
 
         mRecyclerView = findViewById(R.id.shopping_showing_list_contents_recycler_view);
         mRecyclerView.setHasFixedSize(true);
