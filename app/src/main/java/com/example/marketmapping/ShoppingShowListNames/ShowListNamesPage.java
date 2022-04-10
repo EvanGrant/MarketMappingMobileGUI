@@ -30,7 +30,10 @@ public class ShowListNamesPage extends AppCompatActivity implements ShowListName
     private ArrayList<ShowListNamesItem> mShowListNamesList;
     private RequestQueue mRequestQueue;
 
+    private ArrayList<JSONObject> listObjects;
+
     public int passedUserID = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class ShowListNamesPage extends AppCompatActivity implements ShowListName
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mShowListNamesList = new ArrayList<>();
+        listObjects = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
@@ -63,9 +67,13 @@ public class ShowListNamesPage extends AppCompatActivity implements ShowListName
 
                                 String listName = listObject.getString("listName");
                                 String storeName = listObject.getString("name");
+                                int storeIDArray = listObject.getInt("storeId");
 
 
                                 mShowListNamesList.add(new ShowListNamesItem(listName, storeName));
+
+                                listObjects.add(listObject);
+
                             }
 
                             mShowListNamesAdapter = new ShowListNamesAdapter(ShowListNamesPage.this, mShowListNamesList);
@@ -90,14 +98,30 @@ public class ShowListNamesPage extends AppCompatActivity implements ShowListName
     @Override
     public void onItemClick(View view, int position) {
 
-        ShowListNamesItem chosenList = (mShowListNamesList.get(position)); //grabs the list chosen in the onitemclick through positon in the arraylist mShowListNamesList
-        String chosenListString = chosenList.getListNamesShowList(); // converts to String to use for concatenation for next page
+        ShowListNamesItem chosenListName = (mShowListNamesList.get(position)); //grabs the list name chosen in the onitemclick through positon in the arraylist mShowListNamesList
+        String chosenListNameString = chosenListName.getListNamesShowList(); // converts to String to use for concatenation for next page
+        int storeID = 0;
+
+        try {
+            for (int i = 0; i < mShowListNamesList.size(); i++) {
+                if (mShowListNamesList.get(i).getListNamesShowList().equals(chosenListNameString)) {
+                    storeID = listObjects.get(i).getInt("storeId");
+                }
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
 
         Intent itemIntent = new Intent(this, ShoppingShowingListContentsPage.class);
         ShowListNamesItem clickedItem = mShowListNamesList.get(position);
 
-        itemIntent.putExtra("passedListName", chosenListString);
+        itemIntent.putExtra("passedListName", chosenListNameString);
         itemIntent.putExtra("passedUserID", passedUserID);
+        itemIntent.putExtra("passedStoreID", storeID);
 
         startActivity(itemIntent);
 

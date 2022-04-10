@@ -33,6 +33,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
     public String passedListName = "";
     public int passedUserID = 0;
+    public int passedStoreID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
         passedListName = intent.getStringExtra("passedListName");
         passedUserID = intent.getIntExtra("passedUserID", 0);
+        passedStoreID = intent.getIntExtra("passedStoreID", 0);
 
         mRecyclerView = findViewById(R.id.shopping_showing_list_contents_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -57,7 +59,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
     private void parseJSON(){
         //Get new query from Noah that sorts the contents of the list, then input here to get it working
-        String url = "";
+        String url = "http://10.0.2.2:3000/findList/" + passedStoreID + "/" + passedUserID + "/" + passedListName;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -67,9 +69,9 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject foodObject = response.getJSONObject(i);
 
-                                String foodName = foodObject.getString("listName");
-                                int itemAisle = foodObject.getInt("name");
-                                int itemSection = foodObject.getInt("section");
+                                String foodName = foodObject.getString("name");
+                                int itemAisle = foodObject.getInt("aisleId");
+                                int itemSection = foodObject.getInt("sectionId");
 
 
                                 mShoppingShowingListContentsList.add(new ShoppingShowingListContentsItem(foodName, itemAisle, itemSection));
