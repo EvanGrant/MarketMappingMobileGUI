@@ -8,7 +8,6 @@
     tools:context=".CreatListAddItemtoAddtoList.AddItemtoAddtoListPage">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adding_item_recycler_view"
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:background="#2dbecd" />
+        android:background="@drawable/aisleshoppingblurred" />
 
     <Button
         android:id="@+id/SubmitItemToListButton"
@@ -35,6 +34,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/our_teal"/>
 
 </RelativeLayout>
