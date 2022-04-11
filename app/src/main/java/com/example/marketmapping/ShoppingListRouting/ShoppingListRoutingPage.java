@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +24,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ShoppingListRoutingPage extends AppCompatActivity {
+
+    TextToSpeech tts;
+
+    private Button pickedItemButton;
 
     public int passedUserID = 0;
     public int passedStoreID = 0;
@@ -44,6 +51,14 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         mRequestQueue = Volley.newRequestQueue(this);
 
         getItemInfo();
+
+        pickedItemButton = (Button) findViewById(R.id.pickedButton);
+        pickedItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
