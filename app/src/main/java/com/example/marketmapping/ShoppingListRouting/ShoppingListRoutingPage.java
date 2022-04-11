@@ -49,7 +49,6 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
 
     private void getItemInfo() {
 
-        //Get new query from Noah that sorts the contents of the list, then input here to get it working
         String url = "http://10.0.2.2:3000/findList/" + passedStoreID + "/" + passedUserID + "/" + passedListName;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
