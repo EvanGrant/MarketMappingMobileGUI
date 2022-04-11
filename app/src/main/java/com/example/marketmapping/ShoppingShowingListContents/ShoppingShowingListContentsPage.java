@@ -112,7 +112,9 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
         Intent intent = new Intent(this, ShoppingListRoutingPage.class);
 
-        intent.putExtra("passedArrayList", mShoppingShowingListContentsList);
+        intent.putExtra("passedListName", passedListName);
+        intent.putExtra("passedUserID", passedUserID);
+        intent.putExtra("passedStoreID", passedStoreID);
 
         startActivity(intent);
 
