@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marketmapping.R;
+import com.example.marketmapping.ShoppingListRouting.ShoppingListRoutingPage;
 import com.example.marketmapping.ShoppingShowListNames.ShowListNamesAdapter;
 import com.example.marketmapping.ShoppingShowListNames.ShowListNamesItem;
 import com.example.marketmapping.ShoppingShowListNames.ShowListNamesPage;
@@ -31,6 +34,8 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
     private ArrayList<ShoppingShowingListContentsItem> mShoppingShowingListContentsList;
     private RequestQueue mRequestQueue;
 
+    private Button confirmListButton;
+
     public String passedListName = "";
     public int passedUserID = 0;
     public int passedStoreID = 0;
@@ -39,6 +44,8 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_showing_list_contents_page);
+
+
 
         Intent intent = getIntent();
 
@@ -55,6 +62,12 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
 
+
+        confirmListButton = (Button) findViewById(R.id.confirmListButton);
+        confirmListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openActivityShoppingListRoutingPage(); }
+        });
     }
 
     private void parseJSON(){
@@ -94,5 +107,17 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
         mRequestQueue.add(jsonArrayRequest);
 
     }
+
+    public void openActivityShoppingListRoutingPage() {
+
+        Intent intent = new Intent(this, ShoppingListRoutingPage.class);
+
+        intent.putExtra("passedArrayList", mShoppingShowingListContentsList);
+
+        startActivity(intent);
+
+    }
+
+
 
 }
