@@ -34,8 +34,8 @@
  <!-- This Button is for Shopping with a list already in the system-->
     <Button
         android:id="@+id/StartShoppingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
         android:text="Start Shopping!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
