@@ -79,8 +79,6 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
             }
         });
 
-
-
     }
 
     private void ChangeText() {
