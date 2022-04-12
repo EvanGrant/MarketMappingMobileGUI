@@ -59,10 +59,10 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        getItemInfo();
+
 
         editTextItemName = (EditText) findViewById(R.id.itemNameEditText);
-        //editTextItemName.setText(itemsListString[counter]);
+        editTextItemName.setText(foodNames.get(counter));
 
         pickedItemButton = (Button) findViewById(R.id.pickedButton);
         pickedItemButton.setOnClickListener(new View.OnClickListener() {
@@ -71,48 +71,6 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
 
             }
         });
-
-    }
-
-    private void getItemInfo() {
-
-        String url = "http://10.0.2.2:3000/findList/" + passedStoreID + "/" + passedUserID + "/" + passedListName;
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject foodObject = response.getJSONObject(i);
-
-                                String foodName = foodObject.getString("name");
-                                int itemAisle = foodObject.getInt("aisleId");
-                                int itemSection = foodObject.getInt("sectionId");
-
-                                /*
-                                if (itemsListString[i] == null) {
-                                    itemsListString[i] = "go to aisle " + itemAisle + ", section" + itemSection + "for " + foodName;
-                                }
-                                else {
-                                    itemsListString[i] += " and " + foodName;
-                                }
-
-                                */
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        mRequestQueue.add(jsonArrayRequest);
 
     }
 
