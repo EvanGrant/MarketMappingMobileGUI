@@ -54,11 +54,13 @@ public class HomePage extends AppCompatActivity {
         });
 
         //This Button is for adding items to a list, which is separate to creating the list
+        /*
         buttonViewListofUser = (Button) findViewById(R.id.viewListsofUserButton);
         buttonViewListofUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { openActivityShowStoresofUserListsPage(); }
         });
+         */
 
         //This Button is for Shopping with a list already in the system
         startShoppingButton = (Button) findViewById(R.id.StartShoppingButton);
