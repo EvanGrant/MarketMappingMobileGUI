@@ -8,18 +8,9 @@
     android:background="@drawable/aisleshoppingblurred">
 
  <!-- This Button is for creating a list -->
-    <Button
-        android:id="@+id/createListHomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="188dp"
-        android:text="Create List"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
 
-<!-- This Button is for adding items to a list, which is separate to creating the list -->
+    <!-- This Button is for adding items to a list, which is separate to creating the list -->
+<!--
     <Button
         android:id="@+id/viewListsofUserButton"
         android:layout_width="wrap_content"
@@ -31,7 +22,21 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+-->
+
  <!-- This Button is for Shopping with a list already in the system-->
+
+    <Button
+        android:id="@+id/createListHomePage"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="136dp"
+        android:text="Create List"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/StartShoppingButton"
         android:layout_width="300dp"
@@ -39,10 +44,10 @@
         android:text="Start Shopping!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/createListHomePage"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.309" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
