@@ -8,6 +8,7 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
     public int counter = 0;
 
     public Button pickedItemButton;
+    public ImageButton redoButton;
 
     public int passedUserID = 0;
     public int passedStoreID = 0;
@@ -63,7 +65,6 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         ChangeText();
 
         //TextToSpeechItemDirection();
-
 
 
 
@@ -110,12 +111,20 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
                 });
 
 
-
                 counter++;
+
 
             }
         });
 
-    }
+        redoButton = (ImageButton) findViewById(R.id.imageButton);
+        redoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter--;
+                ChangingText.setText(foodNames.get(counter));
+            }
+        });
 
+    }
 }

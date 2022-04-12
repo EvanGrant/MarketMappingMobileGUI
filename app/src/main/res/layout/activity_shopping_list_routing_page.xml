@@ -65,5 +65,16 @@
 
         />
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/doneButton"
+        app:srcCompat="@drawable/ic_baseline_redo_24"
+        android:backgroundTint="@color/our_teal"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
