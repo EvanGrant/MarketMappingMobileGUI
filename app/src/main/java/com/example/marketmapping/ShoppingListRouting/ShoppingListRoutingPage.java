@@ -24,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class ShoppingListRoutingPage extends AppCompatActivity {
 
     TextToSpeech tts;
@@ -38,26 +40,29 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
     public String passedListName = "";
     private RequestQueue mRequestQueue;
 
-    public String[] itemsListString;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_routing_page);
 
-        itemsListString = new String[100];
 
         Intent intent = getIntent();
         passedUserID = intent.getIntExtra("passedUserID", 0);
         passedStoreID = intent.getIntExtra("passedStoreID", 0);
         passedListName = intent.getStringExtra("passedListName");
+        ArrayList<String> foodNames = (ArrayList<String>) getIntent().getSerializableExtra("itemsList");
+
+
 
         mRequestQueue = Volley.newRequestQueue(this);
 
         getItemInfo();
 
         editTextItemName = (EditText) findViewById(R.id.itemNameEditText);
-        editTextItemName.setText(itemsListString[counter]);
+        //editTextItemName.setText(itemsListString[counter]);
 
         pickedItemButton = (Button) findViewById(R.id.pickedButton);
         pickedItemButton.setOnClickListener(new View.OnClickListener() {
@@ -85,12 +90,15 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
                                 int itemAisle = foodObject.getInt("aisleId");
                                 int itemSection = foodObject.getInt("sectionId");
 
+                                /*
                                 if (itemsListString[i] == null) {
                                     itemsListString[i] = "go to aisle " + itemAisle + ", section" + itemSection + "for " + foodName;
                                 }
                                 else {
                                     itemsListString[i] += " and " + foodName;
                                 }
+
+                                */
 
                             }
                         } catch (JSONException e) {

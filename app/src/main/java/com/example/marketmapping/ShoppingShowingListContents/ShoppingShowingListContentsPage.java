@@ -33,6 +33,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
     private ShoppingShowingListContentsAdapter mShoppingShowingListContentsAdapter;
     private ArrayList<ShoppingShowingListContentsItem> mShoppingShowingListContentsList;
     private RequestQueue mRequestQueue;
+    public ArrayList<String> ItemsListArray;
 
     private Button confirmListButton;
 
@@ -40,12 +41,14 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
     public int passedUserID = 0;
     public int passedStoreID = 0;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_showing_list_contents_page);
 
-
+        ItemsListArray = new ArrayList<>();
 
         Intent intent = getIntent();
 
@@ -88,6 +91,9 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
 
                                 mShoppingShowingListContentsList.add(new ShoppingShowingListContentsItem(foodName, itemAisle, itemSection));
+
+                                ItemsListArray.add(foodName);
+
                             }
 
                             mShoppingShowingListContentsAdapter = new ShoppingShowingListContentsAdapter(ShoppingShowingListContentsPage.this, mShoppingShowingListContentsList);
@@ -115,6 +121,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
         intent.putExtra("passedListName", passedListName);
         intent.putExtra("passedUserID", passedUserID);
         intent.putExtra("passedStoreID", passedStoreID);
+        intent.putExtra("itemsList", ItemsListArray);
 
         startActivity(intent);
 
