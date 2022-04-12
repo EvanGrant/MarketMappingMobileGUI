@@ -59,7 +59,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_routing_page);
 
-        tts = new TextToSpeech(this, this);
+        tts = new TextToSpeech(this,this);
 
         Intent intent = getIntent();
         passedUserID = intent.getIntExtra("passedUserID", 0);
@@ -108,14 +108,20 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
     private void TextToSpeechItemDirection() {
 
         String tempVal = itemsListFullString.get(counter);
-        tts.setLanguage(Locale.US);
+
+        tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH, null, null);
+
+        /*
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH, null, null);
         }
         else {
-            tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH,null);
+            tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH,null, null);
         }
+
+
+         */
 
 
     }
