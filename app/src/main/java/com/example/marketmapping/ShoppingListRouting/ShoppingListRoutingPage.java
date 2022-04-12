@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ShoppingListRoutingPage extends AppCompatActivity {
 
@@ -34,12 +36,10 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
     public int counter = 0;
 
     public Button pickedItemButton;
-    public EditText editTextItemName;
 
     public int passedUserID = 0;
     public int passedStoreID = 0;
     public String passedListName = "";
-    private RequestQueue mRequestQueue;
 
     public ArrayList<String> foodNames;
     public ArrayList<String> itemsListFullString;
@@ -60,32 +60,59 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         foodNames = (ArrayList<String>) getIntent().getSerializableExtra("itemsList");
         itemsListFullString = (ArrayList<String>) getIntent().getSerializableExtra("itemsListFullString");
 
+        ChangeText();
 
-        mRequestQueue = Volley.newRequestQueue(this);
-
-
-
+        //TextToSpeechItemDirection();
 
 
 
 
     }
-
+/*
     private void TextToSpeechItemDirection() {
-
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    tts.setLanguage(Locale.US);
+                    tts.setSpeechRate(1.0f);
+                    tts.speak(itemsListFullString.get(counter), TextToSpeech.QUEUE_ADD, null);
+                }
+            }
+        });
     }
+
+ */
 
     private void ChangeText() {
-        //editTextItemName = (EditText) findViewById(R.id.itemNameEditText);
-        //editTextItemName.setText(foodNames.get(counter));
 
         final EditText ChangingText = (EditText) findViewById(R.id.itemNameEditText);
+        ChangingText.setText(foodNames.get(counter));
         pickedItemButton = (Button) findViewById(R.id.pickedButton);
         pickedItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                counter++;
                 ChangingText.setText(foodNames.get(counter));
+
+                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+
+                    String tempVal = itemsListFullString.get(counter);
+
+                    @Override
+                    public void onInit(int status) {
+                        if (status == TextToSpeech.SUCCESS) {
+                            tts.setLanguage(Locale.US);
+                            tts.setSpeechRate(1.0f);
+                            tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH, null);
+                            Toast.makeText(ShoppingListRoutingPage.this, "It should work", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+
+                counter++;
+
             }
         });
 
