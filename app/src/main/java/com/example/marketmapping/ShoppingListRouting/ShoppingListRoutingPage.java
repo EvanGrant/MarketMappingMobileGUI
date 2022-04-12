@@ -2,9 +2,12 @@ package com.example.marketmapping.ShoppingListRouting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,16 +31,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
-public class ShoppingListRoutingPage extends AppCompatActivity {
+public class ShoppingListRoutingPage extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    TextToSpeech tts;
+    public TextToSpeech tts;
 
     public int counter = 0;
 
+    private Context context;
+
     public Button pickedItemButton;
     public ImageButton redoButton;
+    public ImageButton ttsButton;
 
     public int passedUserID = 0;
     public int passedStoreID = 0;
@@ -47,13 +54,12 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
     public ArrayList<String> itemsListFullString;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_routing_page);
 
+        tts = new TextToSpeech(this, this);
 
         Intent intent = getIntent();
         passedUserID = intent.getIntExtra("passedUserID", 0);
@@ -64,25 +70,18 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
 
         ChangeText();
 
-        //TextToSpeechItemDirection();
+        ttsButton = (ImageButton) findViewById(R.id.ttsButton);
 
-
-
-    }
-
-    private void TextToSpeechItemDirection() {
-        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+        ttsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    tts.setLanguage(Locale.US);
-                    tts.setSpeechRate(1.0f);
-                    tts.speak(itemsListFullString.get(counter), TextToSpeech.QUEUE_ADD, null);
-                }
+            public void onClick(View v) {
+                TextToSpeechItemDirection();
             }
         });
-    }
 
+
+
+    }
 
     private void ChangeText() {
 
@@ -106,5 +105,39 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void TextToSpeechItemDirection() {
+
+        String tempVal = itemsListFullString.get(counter);
+        tts.setLanguage(Locale.US);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH, null, null);
+        }
+        else {
+            tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH,null);
+        }
+
+
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+
+            int result = tts.setLanguage(Locale.US);
+
+            if (result == TextToSpeech.LANG_MISSING_DATA
+                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "This Language is not supported");
+            } else {
+                ttsButton.setEnabled(true);
+                TextToSpeechItemDirection();
+            }
+
+        } else {
+            Log.e("TTS", "Initilization Failed!");
+        }
     }
 }
