@@ -54,7 +54,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         passedStoreID = intent.getIntExtra("passedStoreID", 0);
         passedListName = intent.getStringExtra("passedListName");
         ArrayList<String> foodNames = (ArrayList<String>) getIntent().getSerializableExtra("itemsList");
-
+        ArrayList<String> itemsListFullString = (ArrayList<String>) getIntent().getSerializableExtra("itemsListFullString");
 
 
         mRequestQueue = Volley.newRequestQueue(this);
