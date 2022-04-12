@@ -28,6 +28,8 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
 
     TextToSpeech tts;
 
+    public int counter = 0;
+
     public Button pickedItemButton;
     public EditText editTextItemName;
 
@@ -55,6 +57,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         getItemInfo();
 
         editTextItemName = (EditText) findViewById(R.id.itemNameEditText);
+        editTextItemName.setText(itemsListString[counter]);
 
         pickedItemButton = (Button) findViewById(R.id.pickedButton);
         pickedItemButton.setOnClickListener(new View.OnClickListener() {
