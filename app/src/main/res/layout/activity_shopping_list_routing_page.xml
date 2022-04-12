@@ -30,7 +30,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upArrowImageView"
         app:layout_constraintVertical_bias="0.649"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/doneButton"

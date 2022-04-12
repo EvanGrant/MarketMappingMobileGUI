@@ -8,6 +8,7 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +41,9 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
     public String passedListName = "";
     private RequestQueue mRequestQueue;
 
+    public ArrayList<String> foodNames;
+    public ArrayList<String> itemsListFullString;
+
 
 
 
@@ -53,22 +57,35 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         passedUserID = intent.getIntExtra("passedUserID", 0);
         passedStoreID = intent.getIntExtra("passedStoreID", 0);
         passedListName = intent.getStringExtra("passedListName");
-        ArrayList<String> foodNames = (ArrayList<String>) getIntent().getSerializableExtra("itemsList");
-        ArrayList<String> itemsListFullString = (ArrayList<String>) getIntent().getSerializableExtra("itemsListFullString");
+        foodNames = (ArrayList<String>) getIntent().getSerializableExtra("itemsList");
+        itemsListFullString = (ArrayList<String>) getIntent().getSerializableExtra("itemsListFullString");
 
 
         mRequestQueue = Volley.newRequestQueue(this);
 
 
 
-        editTextItemName = (EditText) findViewById(R.id.itemNameEditText);
-        editTextItemName.setText(foodNames.get(counter));
 
+
+
+
+    }
+
+    private void TextToSpeechItemDirection() {
+
+    }
+
+    private void ChangeText() {
+        //editTextItemName = (EditText) findViewById(R.id.itemNameEditText);
+        //editTextItemName.setText(foodNames.get(counter));
+
+        final EditText ChangingText = (EditText) findViewById(R.id.itemNameEditText);
         pickedItemButton = (Button) findViewById(R.id.pickedButton);
         pickedItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                counter++;
+                ChangingText.setText(foodNames.get(counter));
             }
         });
 
