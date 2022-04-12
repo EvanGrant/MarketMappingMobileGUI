@@ -69,7 +69,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
 
 
     }
-/*
+
     private void TextToSpeechItemDirection() {
         tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -83,7 +83,6 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
         });
     }
 
- */
 
     private void ChangeText() {
 
@@ -94,26 +93,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChangingText.setText(foodNames.get(counter));
-
-                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-
-                    String tempVal = itemsListFullString.get(counter);
-
-                    @Override
-                    public void onInit(int status) {
-                        if (status == TextToSpeech.SUCCESS) {
-                            tts.setLanguage(Locale.US);
-                            tts.setSpeechRate(1.0f);
-                            tts.speak(tempVal, TextToSpeech.QUEUE_FLUSH, null);
-                            Toast.makeText(ShoppingListRoutingPage.this, "It should work", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-
                 counter++;
-
-
             }
         });
 

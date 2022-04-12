@@ -23,6 +23,7 @@
         android:layout_height="85dp"
         android:layout_marginTop="200dp"
         android:text="Picked Up!"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/doneButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upArrowImageView"
         app:layout_constraintVertical_bias="0.649"
-        tools:ignore="TextContrastCheck"
-        android:textColor="@color/black"/>
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/doneButton"
@@ -44,24 +44,25 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pickedButton"
+        android:textColor="@color/black"
         />
 
     <EditText
         android:id="@+id/itemNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="4dp"
+        android:background="@android:color/transparent"
         android:ems="10"
+        android:enabled="false"
         android:gravity="center_horizontal"
         android:inputType="none"
-        android:enabled="false"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/pickedButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upArrowImageView"
-        app:layout_constraintVertical_bias="0.494"
-        android:textColor="@color/black"
-        android:background="@android:color/transparent"
+        app:layout_constraintVertical_bias="0.375"
 
         />
 
@@ -69,12 +70,29 @@
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/our_teal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/doneButton"
+        app:layout_constraintTop_toBottomOf="@+id/pickedButton"
         app:srcCompat="@drawable/ic_baseline_redo_24"
-        android:backgroundTint="@color/our_teal"/>
+        />
+
+    <ImageButton
+        android:id="@+id/ttsButton"
+        android:layout_width="75sp"
+        android:layout_height="50sp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/our_teal"
+        app:layout_constraintBottom_toTopOf="@+id/pickedButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameEditText"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_baseline_volume_up_24"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
