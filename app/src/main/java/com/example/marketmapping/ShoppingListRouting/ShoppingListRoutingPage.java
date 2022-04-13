@@ -89,8 +89,8 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
         pickedItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangingText.setText(foodNames.get(counter));
                 counter++;
+                ChangingText.setText(foodNames.get(counter));
             }
         });
 
