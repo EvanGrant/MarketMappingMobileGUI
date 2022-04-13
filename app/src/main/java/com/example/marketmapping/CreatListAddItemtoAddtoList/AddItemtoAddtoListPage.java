@@ -142,7 +142,7 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(AddItemtoAddtoListPage.this, "Added Item to List! Response: " + response, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddItemtoAddtoListPage.this, "Added Item to List!", Toast.LENGTH_SHORT).show();
                             }
                         }, new Response.ErrorListener() {
                     @Override

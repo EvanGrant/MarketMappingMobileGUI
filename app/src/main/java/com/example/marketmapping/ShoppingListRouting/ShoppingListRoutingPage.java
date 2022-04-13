@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.marketmapping.HomePage;
 import com.example.marketmapping.R;
 import com.example.marketmapping.ShoppingShowingListContents.ShoppingShowingListContentsAdapter;
 import com.example.marketmapping.ShoppingShowingListContents.ShoppingShowingListContentsItem;
@@ -45,6 +46,7 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
     public Button pickedItemButton;
     public ImageButton redoButton;
     public ImageButton ttsButton;
+    public Button doneButton;
 
     public int passedUserID = 0;
     public int passedStoreID = 0;
@@ -71,7 +73,6 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
         ChangeText();
 
         ttsButton = (ImageButton) findViewById(R.id.ttsButton);
-
         ttsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +80,13 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
             }
         });
 
+        doneButton = (Button) findViewById(R.id.doneButton);
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReturnToHome();
+            }
+        });
     }
 
     private void ChangeText() {
@@ -143,5 +151,10 @@ public class ShoppingListRoutingPage extends AppCompatActivity implements TextTo
         } else {
             Log.e("TTS", "Initilization Failed!");
         }
+    }
+
+    private void ReturnToHome() {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
     }
 }
