@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.marketmapping.HomePage;
 import com.example.marketmapping.R;
 
 import org.json.JSONArray;
@@ -30,6 +31,8 @@ import java.util.Map;
 public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToListAdapter.OnItemClickListener {
 
     private Button submitButton;
+
+    private Button doneButton;
 
     private RecyclerView mRecyclerView;
     private AddToListAdapter mAddToListAdapter;
@@ -66,7 +69,13 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
 
         submitButton = (Button) findViewById(R.id.SubmitItemToListButton);
 
-
+        doneButton = (Button) findViewById(R.id.doneCreatingListButton);
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BackToHomePage();
+            }
+        });
 
     }
 
@@ -106,6 +115,11 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
 
         mRequestQueue.add(jsonArrayRequest);
 
+    }
+
+    public void BackToHomePage() {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
     }
 
     @Override
@@ -171,4 +185,6 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
         });
 
     }
+
+
 }

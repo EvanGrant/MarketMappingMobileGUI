@@ -106,27 +106,6 @@
         app:startIconDrawable="@drawable/ic_baseline_lock">
     </androidx.appcompat.widget.AppCompatEditText>
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/confirmPasswordBoxRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Confirm Password"
-        app:boxBackgroundColor="#b7c0c5"
-        app:counterEnabled="true"
-        app:counterMaxLength="30"
-        app:endIconMode="password_toggle"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/design_default_color_error"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordBoxRegister"
-        app:startIconDrawable="@drawable/ic_baseline_lock">
-    </androidx.appcompat.widget.AppCompatEditText>
-
     <Button
         android:id="@+id/SubmitButtonRegister"
         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -138,7 +117,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordBoxRegister"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBoxRegister"
         app:layout_constraintVertical_bias="0.76" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

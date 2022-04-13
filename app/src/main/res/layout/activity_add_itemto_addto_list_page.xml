@@ -37,4 +37,14 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/our_teal"/>
 
+    <Button
+        android:id="@+id/doneCreatingListButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Done" />
+
 </RelativeLayout>
