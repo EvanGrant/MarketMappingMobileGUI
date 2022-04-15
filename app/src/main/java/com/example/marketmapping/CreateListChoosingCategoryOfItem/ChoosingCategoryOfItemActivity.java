@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marketmapping.CreatListAddItemtoAddtoList.AddItemtoAddtoListPage;
+import com.example.marketmapping.HomePage;
 import com.example.marketmapping.R;
 
 import org.json.JSONArray;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 
 public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements CategoryAdapter.OnItemClickListener {
     public int passedStoreID;
+
+    public Button doneButton;
 
     private RecyclerView mRecyclerView;
     private CategoryAdapter mCategoryAdapter;
@@ -55,6 +59,18 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
 
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
+
+        /*
+
+        doneButton = (Button) findViewById(R.id.doneButton);
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BackToHomePage();
+            }
+        });
+
+         */
     }
 
     private void parseJSON() {
@@ -108,5 +124,10 @@ public class ChoosingCategoryOfItemActivity extends AppCompatActivity implements
 
         startActivity(addItemIntent);
 
+    }
+
+    public void BackToHomePage() {
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
     }
 }

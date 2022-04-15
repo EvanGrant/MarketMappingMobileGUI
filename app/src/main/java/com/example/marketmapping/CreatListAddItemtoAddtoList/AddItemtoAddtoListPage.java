@@ -69,6 +69,8 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
 
         submitButton = (Button) findViewById(R.id.SubmitItemToListButton);
 
+        /*
+
         doneButton = (Button) findViewById(R.id.doneCreatingListButton);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +78,8 @@ public class AddItemtoAddtoListPage extends AppCompatActivity implements AddToLi
                 BackToHomePage();
             }
         });
+
+         */
 
     }
 
