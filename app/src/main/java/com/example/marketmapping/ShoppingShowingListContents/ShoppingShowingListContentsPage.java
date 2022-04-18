@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marketmapping.R;
+import com.example.marketmapping.ShoppingChoseStoreEntrancePage;
 import com.example.marketmapping.ShoppingListRouting.ShoppingListRoutingPage;
 import com.example.marketmapping.ShoppingShowListNames.ShowListNamesAdapter;
 import com.example.marketmapping.ShoppingShowListNames.ShowListNamesItem;
@@ -72,7 +73,7 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
         confirmListButton = (Button) findViewById(R.id.confirmListButton);
         confirmListButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { openActivityShoppingListRoutingPage(); }
+            public void onClick(View v) { openActivityShoppingChoseStoreEntrancePage(); }
         });
     }
 
@@ -121,9 +122,9 @@ public class ShoppingShowingListContentsPage extends AppCompatActivity {
 
     }
 
-    public void openActivityShoppingListRoutingPage() {
+    public void openActivityShoppingChoseStoreEntrancePage() {
 
-        Intent intent = new Intent(this, ShoppingListRoutingPage.class);
+        Intent intent = new Intent(this, ShoppingChoseStoreEntrancePage.class);
 
         intent.putExtra("passedListName", passedListName);
         intent.putExtra("passedUserID", passedUserID);
